@@ -13,18 +13,18 @@ public class MyConfigFileIterator implements Iterator<String>
 	private String lastReadLine;
 
 	//METHODS
-	public MyConfigFileIterator(String configFileName)
+	public MyConfigFileIterator(String configFileName) //transfers FileReader to BufferedReader
 	{
-		FileReader configFile = null;
+		FileReader theFileReader = null;
 		try
 		{
-			configFile = new FileReader(configFileName);
+			theFileReader = new FileReader(configFileName);
 		}
 		catch (FileNotFoundException e)
 		{
 			//TODO: throw the exception further or handle it;
 		}
-		configFileReader = new BufferedReader(configFile);
+		this.configFileReader = new BufferedReader(theFileReader);
 	}
 
 	@Override
@@ -32,23 +32,26 @@ public class MyConfigFileIterator implements Iterator<String>
 	{
 		try
 		{
-			lastReadLine = configFileReader.readLine();
-			if (lastReadLine != null)
+			this.lastReadLine = this.configFileReader.readLine();
+			if (this.lastReadLine != null)
 			{
-				lastReadLine = lastReadLine.replaceAll("^\\s+", "").replaceAll("\\s+$", "").replaceAll("\\s+", " ");
+				this.lastReadLine = this.lastReadLine.replaceAll("^\\s+", ""); //spaces in the beginning
+				this.lastReadLine = this.lastReadLine.replaceAll("\\s+", " "); //spaces in the middle
+				this.lastReadLine = this.lastReadLine.replaceAll("\\s+$", ""); //spaces in the end
 			}
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			System.out.println("ERROR in hasNext");
 		}
 
-		return lastReadLine != null;
+		boolean isIterationHasMoreElements = (this.lastReadLine != null);
+		return isIterationHasMoreElements;
 	}
 
 	@Override
 	public String next()
 	{
-		return lastReadLine;
+		return this.lastReadLine;
 	}
 }

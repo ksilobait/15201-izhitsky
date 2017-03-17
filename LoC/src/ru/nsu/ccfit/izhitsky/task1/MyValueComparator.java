@@ -1,0 +1,28 @@
+package ru.nsu.ccfit.izhitsky.task1;
+
+import java.util.Comparator;
+import java.util.HashMap;
+
+public class MyValueComparator implements Comparator<MyFilter>
+{
+	private HashMap<MyFilter, MyStatistic.MyRecord> theMap;
+
+	public MyValueComparator(HashMap<MyFilter, MyStatistic.MyRecord> anotherMap)
+	{
+		theMap = new HashMap<>();
+		theMap.putAll(anotherMap);
+	}
+
+	@Override
+	public int compare(MyFilter filter01, MyFilter filter02)
+	{
+		if (theMap.get(filter01).getLineCount() >= theMap.get(filter02).getLineCount())
+		{
+			return -1;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+}

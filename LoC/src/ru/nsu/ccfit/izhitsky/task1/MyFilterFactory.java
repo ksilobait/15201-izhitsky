@@ -12,12 +12,18 @@ public class MyFilterFactory
 	{
 		factoryMap = new HashMap<>();
 		//TODO
-		/*factoryMap.put('.', ExtensionFilterSerializer.class.getName());
-		factoryMap.put('<', LessTimeFilterSerializer.class.getName());
-		factoryMap.put('>', GreaterTimeFilterSerializer.class.getName());
-		factoryMap.put('&', AndFilterSerializer.class.getName());
-		factoryMap.put('|', OrFilterSerializer.class.getName());
-		factoryMap.put('!', NotFilterSerializer.class.getName());*/
+		/*factoryMap.put('&', MySerializer_AndFilter.class.getName());
+		factoryMap.put('|', MySerializer_OrFilter.class.getName());
+		factoryMap.put('!', MySerializer_NotFilter.class.getName());
+		factoryMap.put('.', MySerializer_ExtensionFilter.class.getName());
+		factoryMap.put('<', MySerializer_TimeLessFilter.class.getName());
+		factoryMap.put('>', MySerializer_TimeGreaterFilter.class.getName());*/
+		factoryMap.put('&', "AndFilter");
+		factoryMap.put('|', "OrFilter");
+		factoryMap.put('!', "NotFilter");
+		factoryMap.put('.', "ExtensionFilter");
+		factoryMap.put('<', "TimeLessFilter");
+		factoryMap.put('>', "TimeGreaterFilter");
 	}
 
 	public static MyFilter toCreate (String config)
@@ -31,9 +37,8 @@ public class MyFilterFactory
 		}
 		try
 		{
-			Class c = Class.forName(factoryMap.get(filterType));
-			Method m = c.getMethod("parseFilter", String.class);
-			return (MyFilter)m.invoke(null, filterParameter);
+			String filterName = factoryMap.get(filterType);
+			return MySerializer.toParseFilter(filterName);
 		}
 		catch (Exception e)
 		{

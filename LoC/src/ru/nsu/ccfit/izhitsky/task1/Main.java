@@ -18,57 +18,7 @@ public class Main
 	    MyStatisticSerializer.toPrintStatistic(theController.getStatistic());
 		*/
 
-	    //TEST1 (MyConfigFileIterator.hasNext)
-	    /*
-	    String fileName = "test/tests1_2.txt";
-	    MyConfigFileIterator it = new MyConfigFileIterator(fileName);
-	    if (it.hasNext())
-	    {
-		    System.out.println("TEST 1.1 COMPLETED");
-	    }
-
-	    if (it.hasNext())
-	    {
-		    System.out.println("TEST 1.2 COMPLETED");
-	    }
-
-	    if (it.hasNext())
-	    {
-		    System.out.println("TEST 1.3 COMPLETED");
-	    }
-
-	    if (!it.hasNext())
-	    {
-		    System.out.println("TEST 1.4 COMPLETED");
-	    }*/
-
-	    //TEST2 (MyConfigFileIterator.next)
-	    /*
-	    String fileName = "test/tests1_2.txt";
-	    MyConfigFileIterator it = new MyConfigFileIterator(fileName);
-
-	    it.hasNext();
-
-	    if (it.next().equals(".hpp"))
-	    {
-		    System.out.println("TEST 2.1 COMPLETED");
-	    }
-
-	    it.hasNext();
-
-	    if (it.next().equals(".cpp"))
-	    {
-		    System.out.println("TEST 2.2 COMPLETED");
-	    }
-
-	    it.hasNext();
-
-	    if (it.next().equals("<(20.01.1997 00:00:00)"))
-	    {
-		    System.out.println("TEST 2.3 COMPLETED");
-	    }*/
-
-	    //TEST 3 (MyFilterFactory)
+	    //TEST
 	    MyFilter f1 = MyFilterFactory.toCreate(".java");
 	    if(f1.toString().equals(".java"))
 	    	System.out.println("TEST 3.1 COMPLETED");

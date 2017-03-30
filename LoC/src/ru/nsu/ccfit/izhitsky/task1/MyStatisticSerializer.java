@@ -2,7 +2,6 @@ package ru.nsu.ccfit.izhitsky.task1;
 
 import java.util.Map;
 
-
 public class MyStatisticSerializer
 {
 	public static void toPrintStatistic(MyStatistic theStatistic)

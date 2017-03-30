@@ -26,19 +26,21 @@ public class MyFilterFactory
 		factoryMap.put('>', "TimeGreaterFilter");
 	}
 
-	public static MyFilter toCreate (String config)
+	public static MyFilter toCreate (String configLine) //e.g. "&(.java <100)"
 	{
-		char filterType = config.charAt(0);
-		String filterParameter = config.substring(1);
+		char filterType = configLine.charAt(0); //e.g. "&"
+		String filterParameter = configLine.substring(1); //e.g. "(.java <100)"
 		if (!factoryMap.containsKey(filterType))
 		{
-			System.err.println("Invalid symbol used in configuration file : " + config);
+			//TODO: throw something
+			System.err.println("Invalid symbol used in configuration file : " + configLine);
 			System.exit(1);
 		}
 		try
 		{
-			String filterName = factoryMap.get(filterType);
-			return MySerializer.toParseFilter(filterName);
+			Class theFilter = Class.forName(factoryMap.get(filterType)); //e.g. "&" -> "AndFilter"
+			Method theMethod = theFilter.getMethod("toParseFilter", String.class);
+			return (MyFilter) theMethod.invoke(null, filterParameter);
 		}
 		catch (Exception e)
 		{

@@ -41,7 +41,7 @@ public class MySerializer
 
 		for (String theFilter : filterList)
 		{
-			filtersList.add(MyFilterFactory.toCreate(theFilter));
+			filtersList.add(MyComplexFilterFactory.toCreate(theFilter));
 		}
 
 		return filtersList.toArray(new MyFilter[filtersList.size()]);

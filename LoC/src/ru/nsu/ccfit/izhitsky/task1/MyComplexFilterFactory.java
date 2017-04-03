@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyFilterFactory
+public class MyComplexFilterFactory
 {
 	private static final Map<Character, String> factoryMap;
 
@@ -26,7 +26,7 @@ public class MyFilterFactory
 		factoryMap.put('>', "TimeGreaterFilter");
 	}
 
-	public static MyFilter toCreate (String configLine) //e.g. "&(.java <100)"
+	public MyFilter toCreate(String configLine) //e.g. "&(.java <100)"
 	{
 		char filterType = configLine.charAt(0); //e.g. "&"
 		String filterParameter = configLine.substring(1); //e.g. "(.java <100)"
@@ -38,9 +38,27 @@ public class MyFilterFactory
 		}
 		try
 		{
-			Class theFilter = Class.forName(factoryMap.get(filterType)); //e.g. "&" -> "AndFilter"
-			Method theMethod = theFilter.getMethod("toParseFilter", String.class);
-			return (MyFilter) theMethod.invoke(null, filterParameter);
+			String selectedFilter = factoryMap.get(filterType); //e.g. "&" -> "AndFilter"
+			switch (selectedFilter)
+			{
+				case "AndFilter":
+					return new AndFilter(parse(configLine));
+					break;
+				case "OrFilter":
+					return new OrFilter(parse(configLine));
+					break;
+				case "NotFilter":
+					MyFilter theFilter = null;
+					if (configLine.charAt(0) == '(')
+					{
+						theFilter = MyComplexFilterFactory.toCreate(configLine.substring(1, configLine.length() - 1));
+					}
+					else
+					{
+						theFilter = MyComplexFilterFactory.toCreate(configLine);
+					}
+					return new NotFilter(theFilter);
+			}
 		}
 		catch (Exception e)
 		{

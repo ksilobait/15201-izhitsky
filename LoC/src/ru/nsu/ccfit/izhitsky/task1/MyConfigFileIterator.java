@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
+//TODO: think of this function
 public class MyConfigFileIterator implements Iterator<String>
 {
 	//FIELDS

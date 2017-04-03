@@ -12,3 +12,7 @@
 hs_err_pid*
 
 LoC/\.idea/workspace\.xml
+
+LoC/\.idea/uiDesigner\.xml
+
+*.xml

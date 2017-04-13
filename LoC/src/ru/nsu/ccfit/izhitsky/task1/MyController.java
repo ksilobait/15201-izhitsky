@@ -11,7 +11,8 @@ public class MyController
 	//METHODS
 	public MyController(String configFileName)
 	{
-		filters = MyFilterParser.toParseConfigFile(configFileName);
+		MyFilterParser theParser = new MyFilterParser();
+		filters = theParser.toParseConfigFile(configFileName);
 		statistic = new MyStatistic();
 	}
 

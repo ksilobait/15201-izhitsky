@@ -67,14 +67,13 @@ public class MyComplexFilterFactory
 					return new NotFilter(theFilter);
 					break;
 				case "ExtensionFilter":
-					//TODO
-					//return new ExtensionFilter(configLine);
+					return new ExtensionFilter(configLine);
 					break;
 				case "TimeLessFilter":
-					//TODO
+					return new TimeLessFilter(configLine);
 					break;
 				case "TimeGreaterFilter":
-					//TODO
+					return new TimeGreaterFilter(configLine);
 					break;
 				default:
 					//TODO: throw
@@ -128,7 +127,7 @@ public class MyComplexFilterFactory
 
 		for (String theFilter : filterList)
 		{
-			filtersList.add(MyComplexFilterFactory.toCreate(theFilter));
+			filtersList.add(MyComplexFilterFactory.toCreate(theFilter)); //TODO: fix static context
 		}
 
 		return filtersList.toArray(new MyFilter[filtersList.size()]);

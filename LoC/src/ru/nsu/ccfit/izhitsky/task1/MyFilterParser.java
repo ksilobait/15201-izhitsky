@@ -3,14 +3,15 @@ package ru.nsu.ccfit.izhitsky.task1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFilterParser
+class MyFilterParser
 {
-	public MyFilter[] toParseConfigFile(String fileName)
+	MyFilter[] toParseConfigFile(String fileName) throws Exception
 	{
 		List<MyFilter> theFiltersList = new ArrayList<>();
 		MyComplexFilterFactory myFactory = new MyComplexFilterFactory();
 
 		MyConfigFileIterator it = new MyConfigFileIterator(fileName);
+
 		while (it.hasNext())
 		{
 			MyFilter complexFilter = myFactory.toCreate(it.next());

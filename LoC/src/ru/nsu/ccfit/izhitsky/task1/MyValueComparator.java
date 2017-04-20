@@ -16,7 +16,7 @@ public class MyValueComparator implements Comparator<MyFilter>
 	@Override
 	public int compare(MyFilter filter01, MyFilter filter02)
 	{
-		if (theMap.get(filter01).getLineCount() >= theMap.get(filter02).getLineCount())
+		if (theMap.get(filter01).getTotalFiles() >= theMap.get(filter02).getTotalLines())
 		{
 			return -1;
 		}

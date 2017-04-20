@@ -1,5 +1,6 @@
 package ru.nsu.ccfit.izhitsky.task1;
 
+
 import java.util.Map;
 
 public class MyStatisticSerializer
@@ -12,7 +13,7 @@ public class MyStatisticSerializer
 
 		for (Map.Entry<MyFilter, MyStatistic.MyRecord> theEntry : sortedStatisticMap.entrySet())
 		{
-			System.out.println(theEntry.getKey().toString() + " : " + theEntry.getValue().getLineCount() + " lines in " + theEntry.getValue().getFileCount() + " files");
+			System.out.println(theEntry.getKey().toString() + " : " + theEntry.getValue().getTotalLines() + " lines in " + theEntry.getValue().getTotalFiles() + " files");
 		}
 	}
 }

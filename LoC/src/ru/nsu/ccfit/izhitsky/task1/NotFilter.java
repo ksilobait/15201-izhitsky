@@ -16,4 +16,24 @@ public class NotFilter implements MyFilter
 	{
 		return !(theFilter.toCheck(theFile));
 	}
+
+	@Override
+	public String toString()
+	{
+		return "!(" + theFilter.toString() + ")";
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return (theFilter.hashCode() * this.getClass().toString().hashCode() % 100003); //100003 is a prime number
+	}
+
+	@Override
+	public boolean equals(Object anotherObject)
+	{
+		boolean b1 = this.getClass().isInstance(anotherObject);
+		boolean b2 = this.hashCode() == anotherObject.hashCode();
+		return (b1 && b2);
+	}
 }

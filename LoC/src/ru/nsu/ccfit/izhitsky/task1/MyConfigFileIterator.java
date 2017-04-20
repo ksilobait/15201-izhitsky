@@ -14,7 +14,7 @@ public class MyConfigFileIterator implements Iterator<String>
 	private String lastReadLine;
 
 	//METHODS
-	public MyConfigFileIterator(String configFileName) //transfers FileReader to BufferedReader
+	MyConfigFileIterator(String configFileName) throws Exception //transfers FileReader to BufferedReader
 	{
 		FileReader theFileReader = null;
 		try
@@ -23,8 +23,9 @@ public class MyConfigFileIterator implements Iterator<String>
 		}
 		catch (FileNotFoundException e)
 		{
-			//TODO: throw the exception further or handle it;
+			throw new Exception("File not found");
 		}
+
 		this.configFileReader = new BufferedReader(theFileReader);
 	}
 
@@ -46,8 +47,7 @@ public class MyConfigFileIterator implements Iterator<String>
 			System.out.println("ERROR in hasNext");
 		}
 
-		boolean isIterationHasMoreElements = (this.lastReadLine != null);
-		return isIterationHasMoreElements;
+		return (this.lastReadLine != null); //does iteration have more elements
 	}
 
 	@Override

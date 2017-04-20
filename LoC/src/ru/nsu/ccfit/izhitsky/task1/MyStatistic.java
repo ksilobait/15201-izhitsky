@@ -9,37 +9,37 @@ import java.util.*;
 public class MyStatistic
 {
 	//INNER
-	public class MyRecord
+	class MyRecord
 	{
 		//FIELDS
-		private int fileCount;
-		private int lineCount;
+		private int totalFiles;
+		private int totalLines;
 
 		//METHODS
-		public MyRecord()
+		MyRecord()
 		{
-			fileCount = 0;
-			lineCount = 0;
+			totalFiles = 0;
+			totalLines = 0;
 		}
 
-		public void toIncrementFileCountByOne()
+		void toIncrementFileCountByOne()
 		{
-			fileCount++;
+			totalFiles++;
 		}
 
-		public void toIncrementLineCountBy(int k)
+		void toIncrementLineCountBy(int k)
 		{
-			lineCount = lineCount + k;
+			totalLines = totalLines + k;
 		}
 
-		public int getLineCount()
+		int getTotalLines()
 		{
-			return lineCount;
+			return totalLines;
 		}
 
-		public int getFileCount()
+		int getTotalFiles()
 		{
-			return fileCount;
+			return totalFiles;
 		}
 	}
 	////////////////////////////////////////////////////////////////////////
@@ -51,18 +51,45 @@ public class MyStatistic
 	private int totalFiles;
 	private int totalLines;
 
-	public int getTotalFiles()
+
+	//METHODS
+	int getTotalFiles()
 	{
 		return totalFiles;
 	}
 
-	public int getTotalLines()
+	int getTotalLines()
 	{
 		return totalLines;
 	}
 
+	int getTotalLines(MyFilter theFilter)
+	{
+		if (statisticMap.containsKey(theFilter))
+		{
+			return statisticMap.get(theFilter).getTotalLines();
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	int getTotalFiles(MyFilter theFilter)
+	{
+		if (statisticMap.containsKey(theFilter))
+		{
+			return statisticMap.get(theFilter).getTotalFiles();
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+
 	//METHODS
-	public MyStatistic()
+	MyStatistic()
 	{
 		statisticMap = new HashMap<>();
 		checkedFiles = new ArrayList<>();
@@ -70,7 +97,7 @@ public class MyStatistic
 		totalLines = 0;
 	}
 
-	public void toAdd(MyFilter theFilter, File theFile)
+	void toAdd(MyFilter theFilter, File theFile) throws Exception
 	{
 		if (!checkedFiles.contains(theFile))
 		{
@@ -88,7 +115,14 @@ public class MyStatistic
 		statisticMap.get(theFilter).toIncrementLineCountBy(toCountLines(theFile));
 	}
 
-	public int toCountLines(File theFile)
+	void toAdd(File theFile) throws Exception //when the file was never used
+	{
+		checkedFiles.add(theFile);
+		totalFiles++;
+		totalLines = totalLines + toCountLines(theFile);
+	}
+
+	private int toCountLines(File theFile) throws Exception
 	{
 		int linesCount = 0;
 
@@ -103,7 +137,7 @@ public class MyStatistic
 		}
 		catch (IOException e)
 		{
-			//TODO
+			throw new Exception("IOException");
 			//e.printStackTrace();
 		}
 

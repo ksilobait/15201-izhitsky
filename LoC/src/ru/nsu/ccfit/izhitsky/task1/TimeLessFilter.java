@@ -6,14 +6,44 @@ public class TimeLessFilter implements MyFilter
 {
 	private long timeOfLastModify;
 
-	public TimeLessFilter(String timeOfLastModify_)
+	TimeLessFilter(String timeOfLastModify_) throws Exception
 	{
-		this.timeOfLastModify = Long.parseLong(timeOfLastModify_);
+		long num;
+		try
+		{
+			num = Long.parseLong(timeOfLastModify_);
+		}
+		catch (NumberFormatException e)
+		{
+			throw new Exception("TimeLessFilter faced not a number parameter");
+		}
+
+		this.timeOfLastModify = num;
 	}
 
 	@Override
 	public boolean toCheck(File theFile)
 	{
 		return (theFile.lastModified() < timeOfLastModify);
+	}
+
+	@Override
+	public String toString()
+	{
+		return "<" + timeOfLastModify;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Long.hashCode(timeOfLastModify);
+	}
+
+	@Override
+	public boolean equals(Object anotherObject)
+	{
+		boolean b1 = this.getClass().isInstance(anotherObject);
+		boolean b2 = this.hashCode() == anotherObject.hashCode();
+		return (b1 && b2);
 	}
 }

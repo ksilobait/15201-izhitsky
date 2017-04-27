@@ -3,9 +3,9 @@ package ru.nsu.ccfit.izhitsky.task1;
 
 import java.util.Map;
 
-public class MyStatisticSerializer
+class MyStatisticSerializer
 {
-	public static void toPrintStatistic(MyStatistic theStatistic)
+	static void toPrintStatistic(MyStatistic theStatistic)
 	{
 		System.out.println("Total : " + theStatistic.getTotalLines() + " lines in " + theStatistic.getTotalFiles() + " files");
 		System.out.println("////////////////////////////////////////////////////////////////////////////////");

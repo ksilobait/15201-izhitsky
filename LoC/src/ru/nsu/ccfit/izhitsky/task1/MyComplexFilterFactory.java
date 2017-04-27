@@ -5,14 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyComplexFilterFactory
+class MyComplexFilterFactory
 {
 	private static final Map<Character, String> factoryMap;
 
 	static
 	{
 		factoryMap = new HashMap<>();
-		//TODO
 		factoryMap.put('&', "AndFilter");
 		factoryMap.put('|', "OrFilter");
 		factoryMap.put('!', "NotFilter");
@@ -21,7 +20,7 @@ public class MyComplexFilterFactory
 		factoryMap.put('>', "TimeGreaterFilter");
 	}
 
-	public MyFilter toCreate(String configLine) throws Exception //e.g. "&(.java <100)"
+	MyFilter toCreate(String configLine) throws Exception //e.g. "&(.java <100)"
 	{
 		char filterTypeChar = configLine.charAt(0); //e.g. "&"
 		String filterParameter = configLine.substring(1); //e.g. "(.java <100)"

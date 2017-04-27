@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class MyStatistic
+class MyStatistic
 {
 	//INNER
 	class MyRecord
@@ -63,7 +63,8 @@ public class MyStatistic
 		return totalLines;
 	}
 
-	int getTotalLines(MyFilter theFilter)
+	//never used
+	/*int getTotalLines(MyFilter theFilter)
 	{
 		if (statisticMap.containsKey(theFilter))
 		{
@@ -73,7 +74,7 @@ public class MyStatistic
 		{
 			return 0;
 		}
-	}
+	}*/
 
 	int getTotalFiles(MyFilter theFilter)
 	{
@@ -144,7 +145,7 @@ public class MyStatistic
 		return linesCount;
 	}
 
-	public TreeMap<MyFilter, MyRecord> toSortByValue()
+	TreeMap<MyFilter, MyRecord> toSortByValue()
 	{
 		Comparator<MyFilter> theComparator = new MyValueComparator(statisticMap);
 		TreeMap<MyFilter, MyRecord> theResult = new TreeMap<>(theComparator);

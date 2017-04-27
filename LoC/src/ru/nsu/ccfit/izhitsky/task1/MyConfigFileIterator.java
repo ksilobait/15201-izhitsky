@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
-//TODO: think of this function
 public class MyConfigFileIterator implements Iterator<String>
 {
 	//FIELDS
@@ -16,7 +15,7 @@ public class MyConfigFileIterator implements Iterator<String>
 	//METHODS
 	MyConfigFileIterator(String configFileName) throws Exception //transfers FileReader to BufferedReader
 	{
-		FileReader theFileReader = null;
+		FileReader theFileReader;
 		try
 		{
 			theFileReader = new FileReader(configFileName);

@@ -1,6 +1,7 @@
 package ru.nsu.ccfit.izhitsky.task1;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.ccfit.izhitsky.task1.MyFilters.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

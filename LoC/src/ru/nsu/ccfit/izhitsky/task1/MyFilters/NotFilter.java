@@ -1,4 +1,6 @@
-package ru.nsu.ccfit.izhitsky.task1;
+package ru.nsu.ccfit.izhitsky.task1.MyFilters;
+
+import ru.nsu.ccfit.izhitsky.task1.MyFilter;
 
 import java.io.File;
 
@@ -6,7 +8,7 @@ public class NotFilter implements MyFilter
 {
 	private MyFilter theFilter;
 
-	NotFilter(MyFilter theFilter_)
+	public NotFilter(MyFilter theFilter_)
 	{
 		this.theFilter = theFilter_;
 	}

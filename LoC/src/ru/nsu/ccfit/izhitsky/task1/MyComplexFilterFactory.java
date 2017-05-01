@@ -1,5 +1,7 @@
 package ru.nsu.ccfit.izhitsky.task1;
 
+import ru.nsu.ccfit.izhitsky.task1.MyFilters.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

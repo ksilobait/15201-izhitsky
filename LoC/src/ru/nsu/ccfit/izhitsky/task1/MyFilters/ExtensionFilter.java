@@ -1,4 +1,6 @@
-package ru.nsu.ccfit.izhitsky.task1;
+package ru.nsu.ccfit.izhitsky.task1.MyFilters;
+
+import ru.nsu.ccfit.izhitsky.task1.MyFilter;
 
 import java.io.File;
 
@@ -6,7 +8,7 @@ public class ExtensionFilter implements MyFilter
 {
 	private String theExtension;
 
-	ExtensionFilter(String theExtension_)
+	public ExtensionFilter(String theExtension_)
 	{
 		this.theExtension = theExtension_;
 	}

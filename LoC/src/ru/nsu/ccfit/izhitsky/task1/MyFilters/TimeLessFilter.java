@@ -1,4 +1,6 @@
-package ru.nsu.ccfit.izhitsky.task1;
+package ru.nsu.ccfit.izhitsky.task1.MyFilters;
+
+import ru.nsu.ccfit.izhitsky.task1.MyFilter;
 
 import java.io.File;
 
@@ -6,7 +8,7 @@ public class TimeLessFilter implements MyFilter
 {
 	private long timeOfLastModify;
 
-	TimeLessFilter(String timeOfLastModify_) throws Exception
+	public TimeLessFilter(String timeOfLastModify_) throws Exception
 	{
 		long num;
 		try

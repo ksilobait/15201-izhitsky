@@ -1,4 +1,6 @@
-package ru.nsu.ccfit.izhitsky.task1;
+package ru.nsu.ccfit.izhitsky.task1.MyFilters;
+
+import ru.nsu.ccfit.izhitsky.task1.MyFilter;
 
 import java.io.File;
 
@@ -6,7 +8,7 @@ public class AndFilter implements MyFilter
 {
 	private MyFilter[] filters;
 
-	AndFilter(MyFilter[] filters_)
+	public AndFilter(MyFilter[] filters_)
 	{
 		this.filters = filters_;
 	}

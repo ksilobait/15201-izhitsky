@@ -1,16 +1,53 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 public class MyConfigReader
 {
+	public int getEngineWarehouseSize()
+	{
+		return EngineWarehouseSize;
+	}
+
+	public int getCoachworkWarehouseSize()
+	{
+		return CoachworkWarehouseSize;
+	}
+
+	public int getAccessoryWarehouseSize()
+	{
+		return AccessoryWarehouseSize;
+	}
+
+	public int getAccessorySuppliers()
+	{
+		return AccessorySuppliers;
+	}
+
+	public int getWorkers()
+	{
+		return Workers;
+	}
+
+	public int getDealers()
+	{
+		return Dealers;
+	}
+
+	public boolean isLogSale()
+	{
+		return LogSale;
+	}
+
 	//default values
-	int StorageBodySize = 100;
-	int StorageMotorSize = 100;
-	int StorageAccessorySize = 100;
-	int StorageAutoSize = 100;
-	int AccessorySuppliers = 5;
-	int Workers = 10;
-	int Dealers = 20;
-	boolean LogSale = true;
+	private int EngineWarehouseSize = 100;
+	private int CoachworkWarehouseSize = 100;
+	private int AccessoryWarehouseSize = 100;
+	//private int StorageAutoSize = 100;
+	private int AccessorySuppliers = 5;
+	private int Workers = 10;
+	private int Dealers = 20;
+	private boolean LogSale = true;
 
 	MyConfigReader()
 	{
@@ -20,6 +57,9 @@ public class MyConfigReader
 			while (true)
 			{
 				String s = in.readLine();
+				if (s.isEmpty())
+					break;
+
 				int index;
 				for (index = 0; index < s.length(); index++)
 				{
@@ -40,24 +80,24 @@ public class MyConfigReader
 				{
 					case "StorageBodySize":
 					{
-						StorageBodySize = Integer.parseInt(sValue);
+						EngineWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
 					case "StorageMotorSize":
 					{
-						StorageMotorSize = Integer.parseInt(sValue);
+						CoachworkWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
 					case "StorageAccessorySize":
 					{
-						StorageAccessorySize = Integer.parseInt(sValue);
+						AccessoryWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
-					case "StorageAutoSize":
+					/*case "StorageAutoSize":
 					{
 						StorageAutoSize = Integer.parseInt(sValue);
 						break;
-					}
+					}*/
 					case "AccessorySuppliers":
 					{
 						AccessorySuppliers = Integer.parseInt(sValue);
@@ -90,4 +130,6 @@ public class MyConfigReader
 			System.out.println(e.getMessage());
 		}
 	}
+
+
 }

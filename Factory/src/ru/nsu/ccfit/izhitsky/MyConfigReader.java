@@ -1,3 +1,5 @@
+package ru.nsu.ccfit.izhitsky;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -49,9 +51,9 @@ public class MyConfigReader
 	private int Dealers = 20;
 	private boolean LogSale = true;
 
-	MyConfigReader()
+	MyConfigReader(String fileName)
 	{
-		File configFile = new File("config.txt");
+		File configFile = new File(fileName);
 		try (BufferedReader in = new BufferedReader(new FileReader(configFile)))
 		{
 			while (true)
@@ -130,6 +132,4 @@ public class MyConfigReader
 			System.out.println(e.getMessage());
 		}
 	}
-
-
 }

@@ -5,8 +5,8 @@
     <property name="test.src.dir" value="tests"/>
 
     <path id="classpath.test">
-        <pathelement location="junit/junit-4.12.jar"/>
-        <pathelement location="junit/hamcrest-core-1.3.jar"/>
+        <pathelement location="lib/junit-4.12.jar"/>
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
         <pathelement location="${main.build.dir}"/>
     </path>
 
@@ -30,8 +30,14 @@
             </classpath>
             <formatter type="brief" usefile="false" />
             <batchtest>
-                <fileset dir="${test.src.dir}" includes="**/*Test.class" />
+                <fileset dir="${test.build.dir}" includes="**/*Test.class" />
             </batchtest>
         </junit>
     </target>
+	
+	<target name="clean" description="Flush staging directory">
+        <delete dir="build" />
+        <delete file="${projectName}.jar" />
+    </target>
+
 </project>

@@ -1,14 +1,14 @@
 package ru.nsu.ccfit.izhitsky.LoC;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
+
 import ru.nsu.ccfit.izhitsky.LoC.MyFilters.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MyFilterParserTest
+public class MyFilterParserTest
 {
 	@Test
-	void toParseConfigFile() throws Exception
+	public void toParseConfigFile() throws Exception
 	{
 		MyFilter[] thirdLine = {
 				new NotFilter(new ExtensionFilter("first")),
@@ -34,7 +34,7 @@ class MyFilterParserTest
 
 		for (int i = 0; i < correctAnswer.length; ++i)
 		{
-			assertEquals(correctAnswer[i].toString(), filters[i].toString());
+			Assert.assertEquals(correctAnswer[i].toString(), filters[i].toString());
 		}
 		System.out.println("TEST for MyFilterParser PASSED");
 	}

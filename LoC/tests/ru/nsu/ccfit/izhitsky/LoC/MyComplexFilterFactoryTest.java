@@ -1,13 +1,12 @@
 package ru.nsu.ccfit.izhitsky.LoC;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MyComplexFilterFactoryTest
+public class MyComplexFilterFactoryTest
 {
 	@Test
-	void toCreate() throws Exception
+	public void toCreate() throws Exception
 	{
 		MyComplexFilterFactory myFactory = new MyComplexFilterFactory();
 		MyFilter f1 = myFactory.toCreate(".a");
@@ -15,10 +14,10 @@ class MyComplexFilterFactoryTest
 		MyFilter f3 = myFactory.toCreate("!.c");
 		MyFilter f4 = myFactory.toCreate("|(&(|(.d .e) !<50) .f)");
 
-		assertEquals(".a", f1.toString());
-		assertEquals(">1", f2.toString());
-		assertEquals("!(.c)", f3.toString());
-		assertEquals("|(&(|(.d .e) !(<50)) .f)", f4.toString());
+		Assert.assertEquals(".a", f1.toString());
+		Assert.assertEquals(">1", f2.toString());
+		Assert.assertEquals("!(.c)", f3.toString());
+		Assert.assertEquals("|(&(|(.d .e) !(<50)) .f)", f4.toString());
 		System.out.println("TEST for MyComplexFilterFactory PASSED");
 	}
 }

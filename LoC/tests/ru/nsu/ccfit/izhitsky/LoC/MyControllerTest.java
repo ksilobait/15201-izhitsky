@@ -1,17 +1,16 @@
 package ru.nsu.ccfit.izhitsky.LoC;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MyControllerTest
+public class MyControllerTest
 {
 	@Test
-	void toGatherStatistic()
+	public void toGatherStatistic()
 	{
 		MyController controller;
 		try
@@ -41,11 +40,11 @@ class MyControllerTest
 		{
 			Integer i1 = testMap.get(filter.toString());
 			Integer i2 = stat.getTotalFiles(filter);
-			assertEquals(i1, i2);
+			Assert.assertEquals(i1, i2);
 		}
 
-		assertEquals(21, stat.getTotalLines());
-		assertEquals(6, stat.getTotalFiles());
+		Assert.assertEquals(21, stat.getTotalLines());
+		Assert.assertEquals(6, stat.getTotalFiles());
 
 		System.out.println("TEST for MyController PASSED");
 	}

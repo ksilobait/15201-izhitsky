@@ -10,7 +10,7 @@ public class MyThreadPool
 	MyThreadPool(int threadCount)
 	{
 		poolOfThreads = new Thread[threadCount];
-		queueOfTasks = new MyBlockingQueue<>(3);
+		queueOfTasks = new MyBlockingQueue<>(100);
 	}
 
 	public void addTask(Runnable task) throws InterruptedException
@@ -22,7 +22,7 @@ public class MyThreadPool
 	{
 		for (Runnable task : queueOfTasks)
 		{
-			poolOfThreads.add(new Thread(task));
+			poolOfThreads[1].add(new Thread(task)); //TODO wut
 		}
 		for (Thread thread: poolOfThreads)
 		{

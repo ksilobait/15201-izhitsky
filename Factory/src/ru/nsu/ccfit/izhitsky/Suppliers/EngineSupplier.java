@@ -33,5 +33,9 @@ public class EngineSupplier implements Runnable
 			System.out.println("interruption in EngineSupplier");
 			System.exit(-1);
 		}
+		finally
+		{
+			//something?
+		}
 	}
 }

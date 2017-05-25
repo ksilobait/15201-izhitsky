@@ -1,52 +1,45 @@
-<project name="LoC">
-    <property name="main.build.dir" value="build/src"/>
-    <property name="main.src.dir" value="src"/>
-    <property name="test.build.dir" value="build/tests"/>
-    <property name="test.src.dir" value="tests"/>
-
-    <path id="classpath.test">
-        <pathelement location="lib/junit-4.12.jar"/>
-        <pathelement location="lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${main.build.dir}"/>
-    </path>
-
-    <target name="build">
-        <mkdir dir="${main.build.dir}"/>
-        <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false"/>
-    </target>
-
-    <target name="test-build" depends="build, makejar">
-        <mkdir dir="${test.build.dir}"/>
-        <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
-            <classpath refid="classpath.test"/>
-        </javac>
-    </target>
-
-    <target name="test" depends="test-build">
-        <junit printsummary="on" haltonfailure="yes" fork="true">
-            <classpath>
-                <path refid="classpath.test"/>
-                <pathelement location="${test.build.dir}"/>
-            </classpath>
-            <formatter type="brief" usefile="false" />
-            <batchtest>
-                <fileset dir="${test.build.dir}" includes="**/*Test.class" />
-            </batchtest>
-        </junit>
-    </target>
+<project name="LoC" default="thebuild">
 	
-    <target name="makejar" depends="build">
-        <jar jarfile="./LoC.jar" basedir="${main.build.dir}">
-            <manifest>
-                <attribute name="Main-Class" value="com.LoC.Main" />
-            </manifest>
-        </jar>
-    </target>
-
+	<target name="thebuild" description="make jar file">
+		<delete dir="build"/>
+		<mkdir dir="build/src"/>
+		<javac srcdir="src" destdir="build/src"/>
+		
+		<jar destfile="LoC.jar" basedir="build/src">
+			<manifest>
+				<attribute name="Main-Class" value="ru.nsu.ccfit.izhitsky.LoC.Main"/>
+			</manifest>
+		</jar>
+		
+		<java jar="LoC.jar src/ru/nsu/ccfit/izhitsky/LoC/config.txt src" fork="true"/>
+	</target>
 	
-	<target name="clean" description="Flush staging directory">
-        <delete dir="build" />
-        <delete file="LoC.jar" />
-    </target>
+	<path id="classpath.test">
+		<pathelement location="lib/junit-4.12.jar"/>
+		<pathelement location="lib/hamcrest-core-1.3.jar"/>
+		<pathelement location="build/src"/>
+	</path>
+	
+	<target name="test" depends="thebuild" description="run tests">
+		<mkdir dir="build/tests"/>
+		<javac srcdir="tests" destdir="build/tests" includeantruntime="false">
+			<classpath refid="classpath.test"/>
+		</javac>
+		<junit printsummary="on" haltonfailure="yes" fork="true">
+			<classpath>
+				<path refid="classpath.test"/>
+				<pathelement location="build/tests"/>
+			</classpath>
+			<formatter type="brief" usefile="false"/>
+			<batchtest>
+				<fileset dir="build/tests" includes="**/*Test.class"/>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="clear" description="Flush staging directory">
+		<delete dir="build"/>
+		<delete file="LoC.jar"/>
+	</target>
 
 </project>

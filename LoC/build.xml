@@ -5,13 +5,13 @@
 		<mkdir dir="build/src"/>
 		<javac srcdir="src" destdir="build/src"/>
 		
-		<jar destfile="LoC.jar" basedir="build/src">
+		<jar destfile="LoC.jar">
 			<manifest>
 				<attribute name="Main-Class" value="ru.nsu.ccfit.izhitsky.LoC.Main"/>
 			</manifest>
 		</jar>
 		
-		<java jar="LoC.jar src/ru/nsu/ccfit/izhitsky/LoC/config.txt src" fork="true"/>
+		<java jar="LoC.jar" fork="true"/>
 	</target>
 	
 	<path id="classpath.test">

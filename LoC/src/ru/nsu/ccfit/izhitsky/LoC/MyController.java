@@ -53,7 +53,7 @@ class MyController
 					}
 				}
 
-				if (!checkedAtLeastOnce)
+				if (checkedAtLeastOnce)
 				{
 					statistic.toAdd(theFile);
 				}

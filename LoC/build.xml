@@ -5,7 +5,7 @@
 		<mkdir dir="build/src"/>
 		<javac srcdir="src" destdir="build/src"/>
 		
-		<jar destfile="LoC.jar">
+		<jar destfile="LoC.jar" basedir="build/src">
 			<manifest>
 				<attribute name="Main-Class" value="ru.nsu.ccfit.izhitsky.LoC.Main"/>
 			</manifest>

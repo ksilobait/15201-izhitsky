@@ -47,7 +47,6 @@ class MyStatistic
 	////////////////////////////////////////////////////////////////////////
 	//FIELDS
 	private HashMap<MyFilter, MyRecord> statisticMap;
-	private List<File> checkedFiles;
 	private int totalFiles;
 	private int totalLines;
 
@@ -93,20 +92,12 @@ class MyStatistic
 	MyStatistic()
 	{
 		statisticMap = new HashMap<>();
-		checkedFiles = new ArrayList<>();
 		totalFiles = 0;
 		totalLines = 0;
 	}
 
 	void toAdd(MyFilter theFilter, File theFile) throws Exception
 	{
-		if (!checkedFiles.contains(theFile))
-		{
-			checkedFiles.add(theFile);
-			totalFiles++;
-			totalLines = totalLines + toCountLines(theFile);
-		}
-
 		if (!statisticMap.containsKey(theFilter))
 		{
 			statisticMap.put(theFilter, new MyRecord());
@@ -118,7 +109,6 @@ class MyStatistic
 
 	void toAdd(File theFile) throws Exception //when the file was never used
 	{
-		checkedFiles.add(theFile);
 		totalFiles++;
 		totalLines = totalLines + toCountLines(theFile);
 	}

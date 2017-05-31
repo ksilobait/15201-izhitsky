@@ -36,7 +36,7 @@ public class CoachworkSupplier implements Runnable
 			while (true)
 			{
 				theWarehouse.push(new Coachwork(availableID));
-				theLogger.info("pushed Coachwork #" + availableID + "into Coachwork WH");
+				theLogger.info("pushed Coachwork #" + availableID + " into Coachwork WH");
 				availableID++;
 				Thread.sleep(timeout);
 			}

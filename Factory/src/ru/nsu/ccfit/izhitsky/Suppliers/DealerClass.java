@@ -34,7 +34,6 @@ public class DealerClass implements Runnable
 			{
 				Car theCar = carWarehouse.pop();
 				theLogger.info("Dealer got the car with IDs:" +
-						theCar.getIdNumber() + " " +
 						theCar.getCoachwork().getIdNumber() + "C " +
 						theCar.getEngine().getIdNumber() + "E " +
 						theCar.getAccessory().getIdNumber() + "A"

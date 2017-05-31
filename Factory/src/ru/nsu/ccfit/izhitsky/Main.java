@@ -7,7 +7,6 @@ import org.apache.logging.log4j.core.config.Configurator;
 import ru.nsu.ccfit.izhitsky.Suppliers.*;
 import ru.nsu.ccfit.izhitsky.Warehouses.*;
 
-
 public class Main
 {
 	private static final Logger theLogger = LogManager.getLogger(Main.class);
@@ -15,13 +14,18 @@ public class Main
 	public static void main(String[] args)
 	{
 		//read config
-		MyConfigReader theConfigReader = new MyConfigReader("config.txt");
+		MyConfigReader theConfigReader = new MyConfigReader("src/config.txt");
 
 		//disable logging
 		if (!theConfigReader.isLogSale())
 		{
 			Logger anotherLogger = LogManager.getRootLogger();
 			Configurator.setLevel(anotherLogger.getName(), Level.OFF);
+		}
+		else
+		{
+			Logger anotherLogger = LogManager.getRootLogger();
+			Configurator.setLevel(anotherLogger.getName(), Level.TRACE);
 		}
 
 		//3 start warehouses (склады двигателей, кузовов и аксессуаров)
@@ -43,12 +47,12 @@ public class Main
 		CarWarehouseController theCarWarehouseController = new CarWarehouseController(carAssembler, 100);
 
 		//suppliers (поставщики кузовов, деталей и аксессуаров)
-		EngineSupplier theEngineSupplier = new EngineSupplier(theEngineWarehouse, 100);
-		CoachworkSupplier theCoachworkSupplier = new CoachworkSupplier(theCoachworkWarehouse, 100);
-		AccessorySupplier theAccessorySupplier = new AccessorySupplier(theAccessoryWarehouse, 100);
+		EngineSupplier theEngineSupplier = new EngineSupplier(theEngineWarehouse, theConfigReader.getEngineSupplierTimeout());
+		CoachworkSupplier theCoachworkSupplier = new CoachworkSupplier(theCoachworkWarehouse, theConfigReader.getCoachworkSupplierTimeout());
+		AccessorySupplier theAccessorySupplier = new AccessorySupplier(theAccessoryWarehouse, theConfigReader.getAccessorySupplierTimeout());
 
 		//dealers residence (продажа машин)
-		DealerClass theDealerClass = new DealerClass(theCarWarehouse, 1000);
+		DealerClass theDealerClass = new DealerClass(theCarWarehouse, theConfigReader.getDealerTimeout());
 
 		//prepare to launch (get threads)
 		Thread theCoachworkSupplierThread = theCoachworkSupplier.getThread(); //t1
@@ -85,7 +89,17 @@ public class Main
 			thread.start(); //r6
 		}
 
+		try
+		{
+			Thread.sleep(100);
+		}
+		catch (InterruptedException e)
+		{
+			//ignore
+		}
+
 		//finish
+		theLogger.info("the termination process started");
 		theCoachworkSupplierThread.interrupt(); //r1
 		theEngineSupplierThread.interrupt(); //r2
 		for (Thread t: theAccessorySupplierThreads)

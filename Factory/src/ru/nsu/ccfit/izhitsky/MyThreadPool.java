@@ -17,7 +17,6 @@ public class MyThreadPool
 
 	MyThreadPool(int threadPoolSize_, int taskQueueSize_)
 	{
-
 		poolOfThreads = new Thread[threadPoolSize_];
 		queueOfTasks = new MyBlockingQueue<>(taskQueueSize_);
 

@@ -1,13 +1,18 @@
 <project name="Factory" default="thebuild">
 
+    <path id="libraries">
+        <fileset dir="lib" includes="log4j-api-2.8.2.jar"/>
+        <fileset dir="lib" includes="log4j-core-2.8.2.jar"/>
+    </path>
+
     <target name="thebuild" description="make jar file">
         <delete dir="build"/>
         <mkdir dir="build/src"/>
-        <javac srcdir="src" destdir="build/src"/>
+        <javac classpathref="libraries" srcdir="src" destdir="build/src"/>
 
         <jar destfile="Factory.jar" basedir="build/src">
             <manifest>
-                <attribute name="Main-Class" value="ru.nsu.ccfit.izhitsky.Factory.Main"/>
+                <attribute name="Main-Class" value="ru.nsu.ccfit.izhitsky.Main"/>
             </manifest>
         </jar>
 

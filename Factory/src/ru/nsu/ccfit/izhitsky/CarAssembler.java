@@ -48,7 +48,6 @@ public class CarAssembler
 				Accessory theAccessory = theAccessoryWarehouse.pop();
 				Car theCar = new Car(currentID, theCoachwork, theEngine, theAccessory);
 				theLogger.info("new car was created with IDs:" +
-						theCar.getIdNumber() + " " +
 						theCar.getCoachwork().getIdNumber() + "C " +
 						theCar.getEngine().getIdNumber() + "E " +
 						theCar.getAccessory().getIdNumber() + "A"

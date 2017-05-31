@@ -1,11 +1,16 @@
 package ru.nsu.ccfit.izhitsky;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
 public class MyConfigReader
 {
+	private static final Logger theLogger = LogManager.getLogger(Main.class);
+
 	public int getEngineWarehouseSize()
 	{
 		return engineWarehouseSize;
@@ -52,87 +57,156 @@ public class MyConfigReader
 	}
 
 	//default values
-	private int engineWarehouseSize = 100;
+	private int threadPoolSize = 250;
+	private int taskQueueSize = 30;
+
 	private int coachworkWarehouseSize = 100;
-	private int accessoryWarehouseSize = 100;
-	private int carWarehouseSize = 100;
+	private int engineWarehouseSize = 200;
+	private int accessoryWarehouseSize = 500;
+	private int carWarehouseSize = 90;
 
 	private int accessorySuppliersNumber = 1;
 	private int dealersNumber = 1;
 
+	private int coachworkSupplierTimeout = 800;
+	private int engineSupplierTimeout = 600;
+	private int accessorySupplierTimeout = 300;
+	private int dealerTimeout = 300;
+
+	public int getCoachworkSupplierTimeout()
+	{
+		return coachworkSupplierTimeout;
+	}
+
+	public int getEngineSupplierTimeout()
+	{
+		return engineSupplierTimeout;
+	}
+
+	public int getAccessorySupplierTimeout()
+	{
+		return accessorySupplierTimeout;
+	}
+
+	public int getDealerTimeout()
+	{
+		return dealerTimeout;
+	}
+
 	private boolean logSale = true;
-	private int threadPoolSize = 100;
-	private int taskQueueSize = 100;
 
 	MyConfigReader(String fileName)
 	{
 		File configFile = new File(fileName);
 		try (BufferedReader in = new BufferedReader(new FileReader(configFile)))
 		{
-			while (true)
-			{
-				String s = in.readLine();
-				if (s.isEmpty())
-					break;
+			String s;
 
-				int index;
-				for (index = 0; index < s.length(); index++)
+			while ((s = in.readLine()) != null)
+			{
+				if (s.charAt(0) == '#') //comment
 				{
-					if (s.charAt(index) == '=')
+					continue;
+				}
+
+				int indexOfEqualSign;
+				for (indexOfEqualSign = 0; indexOfEqualSign < s.length(); indexOfEqualSign++)
+				{
+					if (s.charAt(indexOfEqualSign) == '=')
 					{
 						break;
 					}
 				}
 
-				if (index == s.length())
+				if (indexOfEqualSign == s.length())
 				{
-					throw new Exception("Exception:: wrong config file:: no = sign");
+					theLogger.error("there is a line in the config file with no equal sign");
+					continue;
 				}
-				String sName = s.substring(0, index - 1);
-				String sValue = s.substring(index + 3, s.length());
+
+				String sName = s.substring(0, indexOfEqualSign - 1);
+				String sValue = s.substring(indexOfEqualSign + 3, s.length());
 
 				switch (sName)
 				{
+					//THREAD POOL:
 					case "ThreadPoolSize":
+					case "THREAD_POOL_SIZE":
 					{
 						threadPoolSize = Integer.parseInt(sValue);
 						break;
 					}
 					case "TaskQueueSize":
+					case "TASK_QUEUE_SIZE":
 					{
 						taskQueueSize = Integer.parseInt(sValue);
 						break;
 					}
-					case "StorageBodySize":
+					//WAREHOUSES:
+					case "EngineWarehouseSize":
+					case "ENGINE_WAREHOUSE_SIZE":
 					{
 						engineWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
-					case "StorageMotorSize":
+					case "CoachworkWarehouseSize":
+					case "COACHWORK_WAREHOUSE_SIZE":
 					{
 						coachworkWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
-					case "StorageAccessorySize":
+					case "AccessoryWarehouseSize":
+					case "ACCESSORY_WAREHOUSE_SIZE":
 					{
 						accessoryWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
 					case "CarWarehouseSize":
+					case "CAR_WAREHOUSE_SIZE":
 					{
 						carWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
-					case "AccessorySuppliers":
+					//NUMBER
+					case "AccessorySuppliersNumber":
+					case "ACCESSORY_SUPPLIER_NUMBER":
 					{
 						accessorySuppliersNumber = Integer.parseInt(sValue);
 						break;
 					}
-					case "Dealers":
+					case "DealersNumber":
+					case "DEALER_NUMBER":
 					{
 						dealersNumber = Integer.parseInt(sValue);
 						break;
 					}
+					//TIMEOUTS
+					case "COACHWORK_SUPPLIER_TIMEOUT":
+					case "CoachworkSupplierTimeout":
+					{
+						coachworkSupplierTimeout = Integer.parseInt(sValue);
+						break;
+					}
+					case "ENGINE_SUPPLIER_TIMEOUT":
+					case "EngineSupplierTimeout":
+					{
+						engineSupplierTimeout = Integer.parseInt(sValue);
+						break;
+					}
+					case "ACCESSORY_SUPPLIER_TIMEOUT":
+					case "AccessorySupplierTimeout":
+					{
+						accessorySupplierTimeout = Integer.parseInt(sValue);
+						break;
+					}
+					case "DEALER_TIMEOUT":
+					case "DealerTimeout":
+					{
+						dealerTimeout = Integer.parseInt(sValue);
+						break;
+					}
+					//LOG
+					case "LOG_SALE":
 					case "LogSale":
 					{
 						logSale = Boolean.parseBoolean(sValue);
@@ -140,7 +214,7 @@ public class MyConfigReader
 					}
 					default:
 					{
-						throw new Exception("Exception:: wrong config file:: no such value in the system");
+						theLogger.error("strange name in the config file");
 					}
 				}
 			}

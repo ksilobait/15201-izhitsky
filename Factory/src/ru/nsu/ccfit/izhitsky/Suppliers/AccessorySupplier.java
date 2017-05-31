@@ -35,7 +35,7 @@ public class AccessorySupplier implements Runnable
 			while (true)
 			{
 				theWarehouse.push(new Accessory(availableID));
-				theLogger.info("pushed Accessory #" + availableID + "into Accessory WH");
+				theLogger.info("pushed Accessory #" + availableID + " into Accessory WH");
 				availableID++;
 				Thread.sleep(timeout);
 			}

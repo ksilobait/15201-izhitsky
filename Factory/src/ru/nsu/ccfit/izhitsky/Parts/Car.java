@@ -14,4 +14,24 @@ public class Car
 		this.engine = engine_;
 		this.accessory = accessory_;
 	}
+
+	public int getIdNumber()
+	{
+		return idNumber;
+	}
+
+	public Coachwork getCoachwork()
+	{
+		return coachwork;
+	}
+
+	public Engine getEngine()
+	{
+		return engine;
+	}
+
+	public Accessory getAccessory()
+	{
+		return accessory;
+	}
 }

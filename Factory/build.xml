@@ -1,0 +1,22 @@
+<project name="Factory" default="thebuild">
+
+    <target name="thebuild" description="make jar file">
+        <delete dir="build"/>
+        <mkdir dir="build/src"/>
+        <javac srcdir="src" destdir="build/src"/>
+
+        <jar destfile="Factory.jar" basedir="build/src">
+            <manifest>
+                <attribute name="Main-Class" value="ru.nsu.ccfit.izhitsky.Factory.Main"/>
+            </manifest>
+        </jar>
+
+        <java jar="Factory.jar" fork="true"/>
+    </target>
+
+    <target name="clear" description="Flush staging directory">
+        <delete dir="build"/>
+        <delete file="Factory.jar"/>
+    </target>
+
+</project>

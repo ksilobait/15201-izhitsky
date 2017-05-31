@@ -16,7 +16,7 @@ public class EngineWarehouse
 		theQueue.push(o);
 	}
 
-	Engine pop() throws InterruptedException
+	public Engine pop() throws InterruptedException
 	{
 		return theQueue.pop();
 	}

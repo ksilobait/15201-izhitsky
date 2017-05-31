@@ -12,12 +12,12 @@ public class CarWarehouse
 		theQueue = new MyBlockingQueue<>(size_);
 	}
 
-	public void push(Car o) throws InterruptedException
+	public void push(Car o) throws InterruptedException //to here from CarAssembler
 	{
 		theQueue.push(o);
 	}
 
-	public Car pop() throws InterruptedException
+	public Car pop() throws InterruptedException //from here to dealers
 	{
 		return theQueue.pop();
 	}

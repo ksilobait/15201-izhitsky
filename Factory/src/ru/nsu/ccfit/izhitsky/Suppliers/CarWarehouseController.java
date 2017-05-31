@@ -1,21 +1,29 @@
 package ru.nsu.ccfit.izhitsky.Suppliers;
 
-import ru.nsu.ccfit.izhitsky.MyAssembler;
-import ru.nsu.ccfit.izhitsky.Parts.Car;
-import ru.nsu.ccfit.izhitsky.Warehouses.CarWarehouse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ru.nsu.ccfit.izhitsky.CarAssembler;
 
 public class CarWarehouseController implements Runnable
 {
-	private MyAssembler theAssembler;
+	private static final Logger theLogger = LogManager.getLogger(CarWarehouseController.class);
+
+	private CarAssembler theAssembler;
 	private int availableID;
 	private int timeout;
 
-	CarWarehouseController(MyAssembler theAssembler_, int timeout_)
+	public CarWarehouseController(CarAssembler theAssembler_, int timeout_)
 	{
 		this.theAssembler = theAssembler_;
 		timeout = timeout_;
 		availableID = 0;
+	}
 
+	public Thread getThread()
+	{
+		Thread theThread = new Thread(this);
+		theThread.setName("CarWarehouse Controller Thread");
+		return theThread;
 	}
 
 	@Override
@@ -25,7 +33,8 @@ public class CarWarehouseController implements Runnable
 		{
 			while (true)
 			{
-				theWarehouse.push(new Car(availableID));
+				theAssembler.createOneCar(availableID);
+				theLogger.info("created the car #" + availableID);
 				availableID++;
 				Thread.sleep(timeout);
 
@@ -33,12 +42,7 @@ public class CarWarehouseController implements Runnable
 		}
 		catch (InterruptedException e)
 		{
-			System.out.println("interruption in EngineSupplier");
-			System.exit(-1);
-		}
-		finally
-		{
-			//something?
+			theLogger.info("CarWarehouseController was interrupted");
 		}
 	}
 }

@@ -21,9 +21,14 @@ public class MyConfigReader
 		return accessoryWarehouseSize;
 	}
 
-	public int getAccessorySuppliers()
+	public int getAccessorySuppliersNumber()
 	{
-		return accessorySuppliers;
+		return accessorySuppliersNumber;
+	}
+
+	public int getDealersNumber()
+	{
+		return dealersNumber;
 	}
 
 	public boolean isLogSale()
@@ -52,7 +57,8 @@ public class MyConfigReader
 	private int accessoryWarehouseSize = 100;
 	private int carWarehouseSize = 100;
 
-	private int accessorySuppliers = 1;
+	private int accessorySuppliersNumber = 1;
+	private int dealersNumber = 1;
 
 	private boolean logSale = true;
 	private int threadPoolSize = 100;
@@ -119,7 +125,12 @@ public class MyConfigReader
 					}
 					case "AccessorySuppliers":
 					{
-						accessorySuppliers = Integer.parseInt(sValue);
+						accessorySuppliersNumber = Integer.parseInt(sValue);
+						break;
+					}
+					case "Dealers":
+					{
+						dealersNumber = Integer.parseInt(sValue);
 						break;
 					}
 					case "LogSale":

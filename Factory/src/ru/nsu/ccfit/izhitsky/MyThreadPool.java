@@ -2,8 +2,8 @@ package ru.nsu.ccfit.izhitsky;
 
 public class MyThreadPool
 {
-	MyBlockingQueue<Runnable> queueOfTasks;
-	Thread[] poolOfThreads;
+	private MyBlockingQueue<Runnable> queueOfTasks;
+	private Thread[] poolOfThreads;
 	//final static Logger logger = Logger.getLogger(ThreadPool.class); //log4j
 
 

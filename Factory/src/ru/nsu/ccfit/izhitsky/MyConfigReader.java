@@ -8,48 +8,55 @@ public class MyConfigReader
 {
 	public int getEngineWarehouseSize()
 	{
-		return EngineWarehouseSize;
+		return engineWarehouseSize;
 	}
 
 	public int getCoachworkWarehouseSize()
 	{
-		return CoachworkWarehouseSize;
+		return coachworkWarehouseSize;
 	}
 
 	public int getAccessoryWarehouseSize()
 	{
-		return AccessoryWarehouseSize;
+		return accessoryWarehouseSize;
 	}
 
 	public int getAccessorySuppliers()
 	{
-		return AccessorySuppliers;
-	}
-
-	public int getWorkers()
-	{
-		return Workers;
-	}
-
-	public int getDealers()
-	{
-		return Dealers;
+		return accessorySuppliers;
 	}
 
 	public boolean isLogSale()
 	{
-		return LogSale;
+		return logSale;
+	}
+
+	public int getThreadPoolSize()
+	{
+		return threadPoolSize;
+	}
+
+	public int getTaskQueueSize()
+	{
+		return taskQueueSize;
+	}
+
+	public int getCarWarehouseSize()
+	{
+		return carWarehouseSize;
 	}
 
 	//default values
-	private int EngineWarehouseSize = 100;
-	private int CoachworkWarehouseSize = 100;
-	private int AccessoryWarehouseSize = 100;
-	//private int StorageAutoSize = 100;
-	private int AccessorySuppliers = 5;
-	private int Workers = 10;
-	private int Dealers = 20;
-	private boolean LogSale = true;
+	private int engineWarehouseSize = 100;
+	private int coachworkWarehouseSize = 100;
+	private int accessoryWarehouseSize = 100;
+	private int carWarehouseSize = 100;
+
+	private int accessorySuppliers = 1;
+
+	private boolean logSale = true;
+	private int threadPoolSize = 100;
+	private int taskQueueSize = 100;
 
 	MyConfigReader(String fileName)
 	{
@@ -80,44 +87,44 @@ public class MyConfigReader
 
 				switch (sName)
 				{
+					case "ThreadPoolSize":
+					{
+						threadPoolSize = Integer.parseInt(sValue);
+						break;
+					}
+					case "TaskQueueSize":
+					{
+						taskQueueSize = Integer.parseInt(sValue);
+						break;
+					}
 					case "StorageBodySize":
 					{
-						EngineWarehouseSize = Integer.parseInt(sValue);
+						engineWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
 					case "StorageMotorSize":
 					{
-						CoachworkWarehouseSize = Integer.parseInt(sValue);
+						coachworkWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
 					case "StorageAccessorySize":
 					{
-						AccessoryWarehouseSize = Integer.parseInt(sValue);
+						accessoryWarehouseSize = Integer.parseInt(sValue);
 						break;
 					}
-					/*case "StorageAutoSize":
+					case "CarWarehouseSize":
 					{
-						StorageAutoSize = Integer.parseInt(sValue);
+						carWarehouseSize = Integer.parseInt(sValue);
 						break;
-					}*/
+					}
 					case "AccessorySuppliers":
 					{
-						AccessorySuppliers = Integer.parseInt(sValue);
-						break;
-					}
-					case "Workers":
-					{
-						Workers = Integer.parseInt(sValue);
-						break;
-					}
-					case "Dealers":
-					{
-						Dealers = Integer.parseInt(sValue);
+						accessorySuppliers = Integer.parseInt(sValue);
 						break;
 					}
 					case "LogSale":
 					{
-						LogSale = Boolean.parseBoolean(sValue);
+						logSale = Boolean.parseBoolean(sValue);
 						break;
 					}
 					default:

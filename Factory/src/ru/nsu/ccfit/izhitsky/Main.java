@@ -1,26 +1,33 @@
 package ru.nsu.ccfit.izhitsky;
 
-import ru.nsu.ccfit.izhitsky.Suppliers.AccessorySupplier;
-import ru.nsu.ccfit.izhitsky.Suppliers.CoachworkSupplier;
-import ru.nsu.ccfit.izhitsky.Suppliers.EngineSupplier;
-import ru.nsu.ccfit.izhitsky.Warehouses.AccessoryWarehouse;
-import ru.nsu.ccfit.izhitsky.Warehouses.CoachworkWarehouse;
-import ru.nsu.ccfit.izhitsky.Warehouses.EngineWarehouse;
+import ru.nsu.ccfit.izhitsky.Suppliers.*;
+import ru.nsu.ccfit.izhitsky.Warehouses.*;
 
 public class Main
 {
 	public static void main(String[] args)
 	{
 		MyConfigReader theConfigReader = new MyConfigReader("config.txt");
-
 		EngineWarehouse theEngineWarehouse = new EngineWarehouse(theConfigReader.getEngineWarehouseSize());
+		CoachworkWarehouse theCoachworkWarehouse = new CoachworkWarehouse(theConfigReader.getCoachworkWarehouseSize());
+		AccessoryWarehouse theAccessoryWarehouse = new AccessoryWarehouse(theConfigReader.getAccessoryWarehouseSize());
+		CarWarehouse theCarWarehouse = new CarWarehouse(theConfigReader.getCarWarehouseSize());
+
+		MyAssembler theAssembler = new MyAssembler(theConfigReader.getThreadPoolSize(), theConfigReader.getTaskQueueSize());
+		theAssembler.setEngineWarehouse(theEngineWarehouse);
+		theAssembler.setCoachworkWarehouse(theCoachworkWarehouse);
+		theAssembler.setAccessoryWarehouse(theAccessoryWarehouse);
+		theAssembler.setCarWarehouse(theCarWarehouse);
+
+		CarWarehouseController theCarWarehouseController = new CarWarehouseController(theAssembler, 1);
+
 		EngineSupplier theEngineSupplier = new EngineSupplier(theEngineWarehouse, 1);
 
-		CoachworkWarehouse theCoachworkWarehouse = new CoachworkWarehouse(theConfigReader.getCoachworkWarehouseSize());
 		CoachworkSupplier theCoachworkSupplier = new CoachworkSupplier(theCoachworkWarehouse, 1);
 
-		AccessoryWarehouse theAccessoryWarehouse = new AccessoryWarehouse(theConfigReader.getAccessoryWarehouseSize());
 		AccessorySupplier theAccessorySupplier = new AccessorySupplier(theAccessoryWarehouse, 1);
+
+		CarWarehouseController theCarWarehouseController = new CarWarehouseController(theCarWarehouse);
 
 		theEngineSupplier.run();
 		theCoachworkSupplier.run();

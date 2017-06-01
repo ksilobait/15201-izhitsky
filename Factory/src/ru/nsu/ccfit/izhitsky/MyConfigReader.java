@@ -104,7 +104,7 @@ public class MyConfigReader
 
 			while ((s = in.readLine()) != null)
 			{
-				if (s.charAt(0) == '#') //comment
+				if (s.isEmpty() || s.charAt(0) == '#') //comment or empty
 				{
 					continue;
 				}
@@ -124,8 +124,8 @@ public class MyConfigReader
 					continue;
 				}
 
-				String sName = s.substring(0, indexOfEqualSign - 1);
-				String sValue = s.substring(indexOfEqualSign + 3, s.length());
+				String sName = s.substring(0, indexOfEqualSign);
+				String sValue = s.substring(indexOfEqualSign + 1, s.length());
 
 				switch (sName)
 				{

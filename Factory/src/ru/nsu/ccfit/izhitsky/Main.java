@@ -14,18 +14,13 @@ public class Main
 	public static void main(String[] args)
 	{
 		//read config
-		MyConfigReader theConfigReader = new MyConfigReader("src/config.txt");
+		MyConfigReader theConfigReader = new MyConfigReader("config.txt");
 
 		//disable logging
 		if (!theConfigReader.isLogSale())
 		{
 			Logger anotherLogger = LogManager.getRootLogger();
 			Configurator.setLevel(anotherLogger.getName(), Level.OFF);
-		}
-		else
-		{
-			Logger anotherLogger = LogManager.getRootLogger();
-			Configurator.setLevel(anotherLogger.getName(), Level.TRACE);
 		}
 
 		//3 start warehouses (склады двигателей, кузовов и аксессуаров)
@@ -91,7 +86,7 @@ public class Main
 
 		try
 		{
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		}
 		catch (InterruptedException e)
 		{

@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class A_Chat_Server_Return
+public class A_Chat_Server_Return implements Runnable
 {
 	//Globals
 	Socket SOCK;
@@ -42,7 +42,7 @@ public class A_Chat_Server_Return
 		}
 	}
 	//----------------------------------------------------------------------------------
-
+	@Override
 	public void run()
 	{
 		try

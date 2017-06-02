@@ -8,14 +8,11 @@ import java.util.*;
 
 class MyStatistic
 {
-	//INNER
 	class MyRecord
 	{
-		//FIELDS
 		private int totalFiles;
 		private int totalLines;
 
-		//METHODS
 		MyRecord()
 		{
 			totalFiles = 0;
@@ -42,16 +39,15 @@ class MyStatistic
 			return totalFiles;
 		}
 	}
-	////////////////////////////////////////////////////////////////////////
 
-	////////////////////////////////////////////////////////////////////////
-	//FIELDS
+	//--------------------------------------------------------------------------------------
+
 	private HashMap<MyFilter, MyRecord> statisticMap;
 	private int totalFiles;
 	private int totalLines;
 
+	//--------------------------------------------------------------------------------------
 
-	//METHODS
 	int getTotalFiles()
 	{
 		return totalFiles;
@@ -63,7 +59,7 @@ class MyStatistic
 	}
 
 	//never used
-	/*int getTotalLines(MyFilter theFilter)
+	int getTotalLines(MyFilter theFilter)
 	{
 		if (statisticMap.containsKey(theFilter))
 		{
@@ -73,7 +69,7 @@ class MyStatistic
 		{
 			return 0;
 		}
-	}*/
+	}
 
 	int getTotalFiles(MyFilter theFilter)
 	{
@@ -87,8 +83,6 @@ class MyStatistic
 		}
 	}
 
-
-	//METHODS
 	MyStatistic()
 	{
 		statisticMap = new HashMap<>();
@@ -117,19 +111,12 @@ class MyStatistic
 	{
 		int linesCount = 0;
 
-		try
+		try (BufferedReader theReader = new BufferedReader(new FileReader(theFile)))
 		{
-			BufferedReader theReader = new BufferedReader(new FileReader(theFile));
 			while (theReader.readLine() != null)
 			{
 				linesCount++;
 			}
-			theReader.close();
-		}
-		catch (IOException e)
-		{
-			throw new Exception("IOException");
-			//e.printStackTrace();
 		}
 
 		return linesCount;

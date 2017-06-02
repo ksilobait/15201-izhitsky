@@ -43,8 +43,8 @@ public class MyControllerTest
 			Assert.assertEquals(i1, i2);
 		}
 
-		Assert.assertEquals(21, stat.getTotalLines());
-		Assert.assertEquals(6, stat.getTotalFiles());
+		Assert.assertEquals(4, stat.getTotalFiles());
+		Assert.assertEquals(6, stat.getTotalLines());
 
 		System.out.println("TEST for MyController PASSED");
 	}

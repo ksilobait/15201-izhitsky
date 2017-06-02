@@ -7,6 +7,8 @@ public class TimeLessFilter implements MyFilter
 {
 	private long timeOfLastModify;
 
+	//--------------------------------------------------------------------------------------
+
 	public TimeLessFilter(String timeOfLastModify_) throws Exception
 	{
 		long num;

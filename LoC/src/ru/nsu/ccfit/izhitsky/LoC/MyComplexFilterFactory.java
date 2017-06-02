@@ -11,6 +11,8 @@ class MyComplexFilterFactory
 {
 	private static final Map<Character, String> factoryMap;
 
+	//--------------------------------------------------------------------------------------
+
 	static
 	{
 		factoryMap = new HashMap<>();

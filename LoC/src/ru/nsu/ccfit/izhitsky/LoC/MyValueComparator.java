@@ -7,6 +7,8 @@ public class MyValueComparator implements Comparator<MyFilter>
 {
 	private HashMap<MyFilter, MyStatistic.MyRecord> theMap;
 
+	//--------------------------------------------------------------------------------------
+
 	MyValueComparator(HashMap<MyFilter, MyStatistic.MyRecord> anotherMap)
 	{
 		theMap = new HashMap<>();

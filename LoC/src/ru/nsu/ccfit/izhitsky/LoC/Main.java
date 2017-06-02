@@ -16,15 +16,12 @@ public class Main
 		try
 		{
 			MyController theController = new MyController(args[0]); //parse configFile
-			theController.toGatherStatistic(new File(args[1]));
-			MyStatisticSerializer.toPrintStatistic(theController.getStatistic());
+			theController.toGatherStatistic(new File(args[1])); //directory
+			MyStatisticSerializer.toPrintStatistic(theController.getStatistic()); //print result
 		}
 		catch (Exception e)
 		{
 			System.out.println("EXCEPTION CAUGHT: " + e.getMessage());
 		}
-
-
-
 	}
 }

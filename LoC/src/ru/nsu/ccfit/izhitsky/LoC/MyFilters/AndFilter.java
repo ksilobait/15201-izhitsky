@@ -7,6 +7,8 @@ public class AndFilter implements MyFilter
 {
 	private MyFilter[] filters;
 
+	//--------------------------------------------------------------------------------------
+
 	public AndFilter(MyFilter[] filters_)
 	{
 		this.filters = filters_;

@@ -7,6 +7,8 @@ public class OrFilter implements MyFilter
 {
 	private MyFilter[] filters;
 
+	//--------------------------------------------------------------------------------------
+
 	public OrFilter(MyFilter[] filters_)
 	{
 		this.filters = filters_;

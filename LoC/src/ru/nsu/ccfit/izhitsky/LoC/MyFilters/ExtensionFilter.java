@@ -7,6 +7,8 @@ public class ExtensionFilter implements MyFilter
 {
 	private String theExtension;
 
+	//--------------------------------------------------------------------------------------
+
 	public ExtensionFilter(String theExtension_)
 	{
 		this.theExtension = theExtension_;

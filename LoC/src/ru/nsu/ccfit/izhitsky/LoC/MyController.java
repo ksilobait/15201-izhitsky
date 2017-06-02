@@ -4,15 +4,15 @@ import java.io.File;
 
 class MyController
 {
-	//FIELDS
 	private MyFilter[] filters;
 	private MyStatistic statistic;
 
-	//METHODS
+	//--------------------------------------------------------------------------------------
+
 	MyController(String configFileName) throws Exception
 	{
 		MyFilterParser theParser = new MyFilterParser();
-		filters = theParser.toParseConfigFile(configFileName);
+		filters = theParser.toParseConfigFile(configFileName); //parse
 		statistic = new MyStatistic();
 	}
 
@@ -39,23 +39,23 @@ class MyController
 		{
 			if (theFile.isDirectory())
 			{
-				toGatherStatistic(theFile);
+				toGatherStatistic(theFile); //recursive plunge
 			}
-			else
+			else //is file
 			{
 				boolean checkedAtLeastOnce = false;
 				for (MyFilter theFilter : filters)
 				{
 					if (theFilter.toCheck(theFile))
 					{
-						statistic.toAdd(theFilter, theFile);
+						statistic.toAdd(theFilter, theFile); //sub counters
 						checkedAtLeastOnce = true;
 					}
 				}
 
 				if (checkedAtLeastOnce)
 				{
-					statistic.toAdd(theFile);
+					statistic.toAdd(theFile); //main counter
 				}
 			}
 		}

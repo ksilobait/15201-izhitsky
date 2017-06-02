@@ -8,11 +8,11 @@ import java.util.Iterator;
 
 public class MyConfigFileIterator implements Iterator<String>
 {
-	//FIELDS
 	private BufferedReader configFileReader;
 	private String lastReadLine;
 
-	//METHODS
+	//--------------------------------------------------------------------------------------
+
 	MyConfigFileIterator(String configFileName) throws Exception //transfers FileReader to BufferedReader
 	{
 		FileReader theFileReader;

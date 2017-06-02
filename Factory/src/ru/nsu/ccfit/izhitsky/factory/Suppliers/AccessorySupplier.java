@@ -1,29 +1,30 @@
-package ru.nsu.ccfit.izhitsky.Suppliers;
+package ru.nsu.ccfit.izhitsky.factory.Suppliers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.nsu.ccfit.izhitsky.Parts.Accessory;
-import ru.nsu.ccfit.izhitsky.Warehouses.AccessoryWarehouse;
+import ru.nsu.ccfit.izhitsky.factory.Parts.Accessory;
+import ru.nsu.ccfit.izhitsky.factory.Warehouses.AccessoryWarehouse;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class AccessorySupplier implements Runnable
 {
 	private static final Logger theLogger = LogManager.getLogger(AccessorySupplier.class);
 
 	private AccessoryWarehouse theWarehouse;
-	private int availableID;
+	private static AtomicInteger availableID = new AtomicInteger();
 	private int timeout;
 
 	public AccessorySupplier(AccessoryWarehouse warehouseAccessory_, int timeout_)
 	{
 		theWarehouse = warehouseAccessory_;
 		timeout = timeout_;
-		availableID = 0;
 	}
 
 	public Thread getThread()
 	{
 		Thread theThread = new Thread(this);
-		theThread.setName("Accessory Supplier Thread");
+		theThread.setName("ASThread");
 		return theThread;
 	}
 
@@ -34,9 +35,8 @@ public class AccessorySupplier implements Runnable
 		{
 			while (true)
 			{
-				theWarehouse.push(new Accessory(availableID));
-				theLogger.info("pushed Accessory #" + availableID + " into Accessory WH");
-				availableID++;
+				theWarehouse.push(new Accessory(availableID.get()));
+				theLogger.info("pushed Accessory #" + availableID.getAndIncrement() + " into Accessory WH");
 				Thread.sleep(timeout);
 			}
 		}

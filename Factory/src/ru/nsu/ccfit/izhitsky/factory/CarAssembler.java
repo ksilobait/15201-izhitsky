@@ -1,9 +1,10 @@
-package ru.nsu.ccfit.izhitsky;
+package ru.nsu.ccfit.izhitsky.factory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.nsu.ccfit.izhitsky.Parts.*;
-import ru.nsu.ccfit.izhitsky.Warehouses.*;
+import ru.nsu.ccfit.izhitsky.factory.Parts.*;
+import ru.nsu.ccfit.izhitsky.factory.Warehouses.*;
+import ru.nsu.ccfit.izhitsky.threadpool.MyThreadPool;
 
 public class CarAssembler
 {
@@ -56,7 +57,7 @@ public class CarAssembler
 			}
 			catch (InterruptedException e)
 			{
-				System.out.println(e.toString());
+				theLogger.info("the creating of a car was interrupted");
 			}
 		}
 	}

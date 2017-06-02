@@ -1,28 +1,29 @@
-package ru.nsu.ccfit.izhitsky.Suppliers;
+package ru.nsu.ccfit.izhitsky.factory.Suppliers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.nsu.ccfit.izhitsky.CarAssembler;
+import ru.nsu.ccfit.izhitsky.factory.CarAssembler;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CarWarehouseController implements Runnable
 {
 	private static final Logger theLogger = LogManager.getLogger(CarWarehouseController.class);
 
 	private CarAssembler theAssembler;
-	private int availableID;
+	private static AtomicInteger availableID = new AtomicInteger();
 	private int timeout;
 
 	public CarWarehouseController(CarAssembler theAssembler_, int timeout_)
 	{
 		this.theAssembler = theAssembler_;
 		timeout = timeout_;
-		availableID = 0;
 	}
 
 	public Thread getThread()
 	{
 		Thread theThread = new Thread(this);
-		theThread.setName("CarWarehouse Controller Thread");
+		theThread.setName("CWCThread");
 		return theThread;
 	}
 
@@ -33,11 +34,9 @@ public class CarWarehouseController implements Runnable
 		{
 			while (true)
 			{
-				theAssembler.createOneCar(availableID);
-				theLogger.info("created the car #" + availableID);
-				availableID++;
+				theAssembler.createOneCar(availableID.get());
+				theLogger.info("created the car #" + availableID.getAndIncrement());
 				Thread.sleep(timeout);
-
 			}
 		}
 		catch (InterruptedException e)

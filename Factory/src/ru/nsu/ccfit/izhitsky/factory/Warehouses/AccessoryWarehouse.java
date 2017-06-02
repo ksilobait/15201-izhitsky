@@ -1,6 +1,6 @@
-package ru.nsu.ccfit.izhitsky.Warehouses;
-import ru.nsu.ccfit.izhitsky.MyBlockingQueue;
-import ru.nsu.ccfit.izhitsky.Parts.Accessory;
+package ru.nsu.ccfit.izhitsky.factory.Warehouses;
+import ru.nsu.ccfit.izhitsky.threadpool.MyBlockingQueue;
+import ru.nsu.ccfit.izhitsky.factory.Parts.Accessory;
 
 public class AccessoryWarehouse
 {

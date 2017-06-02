@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.izhitsky.Parts;
+package ru.nsu.ccfit.izhitsky.factory.Parts;
 
 public class Accessory
 {

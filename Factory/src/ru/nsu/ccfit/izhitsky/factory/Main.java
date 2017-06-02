@@ -1,14 +1,22 @@
-package ru.nsu.ccfit.izhitsky;
+package ru.nsu.ccfit.izhitsky.factory;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
-import ru.nsu.ccfit.izhitsky.Suppliers.*;
-import ru.nsu.ccfit.izhitsky.Warehouses.*;
+import ru.nsu.ccfit.izhitsky.factory.Suppliers.*;
+import ru.nsu.ccfit.izhitsky.factory.Warehouses.*;
+
+import java.util.Properties;
 
 public class Main
 {
+	static
+	{
+		Properties props = System.getProperties();
+		props.setProperty("log4j.configurationFile", "file:src/log4j2.xml");
+	}
+
 	private static final Logger theLogger = LogManager.getLogger(Main.class);
 
 	public static void main(String[] args)
@@ -94,6 +102,7 @@ public class Main
 		}
 
 		//finish
+		theLogger.info("");
 		theLogger.info("the termination process started");
 		theCoachworkSupplierThread.interrupt(); //r1
 		theEngineSupplierThread.interrupt(); //r2
@@ -110,6 +119,5 @@ public class Main
 		{
 			thread.interrupt(); //r6
 		}
-
 	}
 }

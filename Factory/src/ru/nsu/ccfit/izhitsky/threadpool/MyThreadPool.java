@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.izhitsky;
+package ru.nsu.ccfit.izhitsky.threadpool;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,7 @@ public class MyThreadPool
 		return poolOfThreads;
 	}
 
-	MyThreadPool(int threadPoolSize_, int taskQueueSize_)
+	public MyThreadPool(int threadPoolSize_, int taskQueueSize_)
 	{
 		poolOfThreads = new Thread[threadPoolSize_];
 		queueOfTasks = new MyBlockingQueue<>(taskQueueSize_);

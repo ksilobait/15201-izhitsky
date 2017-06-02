@@ -1,7 +1,7 @@
-package ru.nsu.ccfit.izhitsky.Warehouses;
+package ru.nsu.ccfit.izhitsky.factory.Warehouses;
 
-import ru.nsu.ccfit.izhitsky.MyBlockingQueue;
-import ru.nsu.ccfit.izhitsky.Parts.Car;
+import ru.nsu.ccfit.izhitsky.threadpool.MyBlockingQueue;
+import ru.nsu.ccfit.izhitsky.factory.Parts.Car;
 
 public class CarWarehouse
 {

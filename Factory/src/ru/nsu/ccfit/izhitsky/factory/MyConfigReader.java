@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.izhitsky;
+package ru.nsu.ccfit.izhitsky.factory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

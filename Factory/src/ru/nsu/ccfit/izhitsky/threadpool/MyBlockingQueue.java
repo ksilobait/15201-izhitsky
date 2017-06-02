@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.izhitsky;
+package ru.nsu.ccfit.izhitsky.threadpool;
 
 import java.util.LinkedList;
 
@@ -20,7 +20,7 @@ public class MyBlockingQueue<T>
 			wait();
 		}
 
-		if (theQueue.size() == 0) //TODO empty
+		if (theQueue.size() == 0)
 		{
 			notifyAll();
 		}
@@ -35,7 +35,7 @@ public class MyBlockingQueue<T>
 			wait();
 		}
 
-		if (theQueue.size() == maxSize) //TODO overload
+		if (theQueue.size() == maxSize)
 		{
 			notifyAll();
 		}

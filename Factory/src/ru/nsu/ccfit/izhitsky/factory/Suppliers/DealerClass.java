@@ -1,13 +1,16 @@
-package ru.nsu.ccfit.izhitsky.Suppliers;
+package ru.nsu.ccfit.izhitsky.factory.Suppliers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.nsu.ccfit.izhitsky.Parts.Car;
-import ru.nsu.ccfit.izhitsky.Warehouses.CarWarehouse;
+import ru.nsu.ccfit.izhitsky.factory.Parts.Car;
+import ru.nsu.ccfit.izhitsky.factory.Warehouses.CarWarehouse;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DealerClass implements Runnable
 {
 	private static final Logger theLogger = LogManager.getLogger(EngineSupplier.class);
+	private static AtomicInteger id = new AtomicInteger();
 
 	private CarWarehouse carWarehouse;
 	private int timeout;
@@ -21,7 +24,7 @@ public class DealerClass implements Runnable
 	public Thread getThread()
 	{
 		Thread theThread = new Thread(this);
-		theThread.setName("The Dealer Thread (one of many)");
+		theThread.setName("DealerThread#" + id.getAndIncrement());
 		return theThread;
 	}
 
@@ -33,10 +36,11 @@ public class DealerClass implements Runnable
 			while (true)
 			{
 				Car theCar = carWarehouse.pop();
-				theLogger.info("Dealer got the car with IDs:" +
-						theCar.getCoachwork().getIdNumber() + "C " +
-						theCar.getEngine().getIdNumber() + "E " +
-						theCar.getAccessory().getIdNumber() + "A"
+				theLogger.info("Dealer " + id.get() + ": Auto " +
+						theCar.getIdNumber() + " (Body: " +
+						theCar.getCoachwork().getIdNumber() + ", Motor: " +
+						theCar.getEngine().getIdNumber() + ", Accessory: " +
+						theCar.getAccessory().getIdNumber() + ")"
 				);
 				Thread.sleep(timeout);
 			}

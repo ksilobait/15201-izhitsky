@@ -17,7 +17,7 @@ public class A_Chat_Server
 	{
 		try
 		{
-			final int PORT = 444;
+			final int PORT = 4444;
 			ServerSocket SERVER = new ServerSocket(PORT);
 			System.out.println("Waiting for clients...");
 

@@ -49,8 +49,8 @@ public class A_Chat_Client_GUI
 	{
 		try
 		{
-			final int PORT = 444;
-			final String HOST = "Galactica";
+			final int PORT = 4444;
+			final String HOST = "localhost";
 			Socket SOCK = new Socket(HOST, PORT);
 			System.out.println("You connected to: " + HOST);
 

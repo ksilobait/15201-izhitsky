@@ -10,8 +10,6 @@
 				<attribute name="Main-Class" value="ru.nsu.ccfit.izhitsky.LoC.Main"/>
 			</manifest>
 		</jar>
-		
-		<java jar="LoC.jar" fork="true"/>
 	</target>
 	
 	<path id="classpath.test">

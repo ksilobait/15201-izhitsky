@@ -1,4 +1,6 @@
-"ant" - compiles project, runs program, creates jar file, runs tests
+"ant" - compiles project, creates jar file
+
+"ant test" - 'ant' + launches tests
 
 "ant clear" - removes jar file and build folder
 

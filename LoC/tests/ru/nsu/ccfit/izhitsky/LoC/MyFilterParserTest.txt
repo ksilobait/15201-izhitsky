@@ -1,0 +1,4 @@
+!.abc
+<100
+&(!.first >200 .third)
+|(.first .second !<300)

@@ -5,12 +5,16 @@ import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.izhitsky.factory.Parts.Car;
 import ru.nsu.ccfit.izhitsky.factory.Warehouses.CarWarehouse;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DealerClass implements Runnable
 {
 	private static final Logger theLogger = LogManager.getLogger(EngineSupplier.class);
 	private static AtomicInteger id = new AtomicInteger();
+	private static AtomicInteger transactionCounter = new AtomicInteger();
+
 
 	private CarWarehouse carWarehouse;
 	private int timeout;
@@ -28,6 +32,11 @@ public class DealerClass implements Runnable
 		return theThread;
 	}
 
+	public void setTimeout(int timeout)
+	{
+		this.timeout = timeout;
+	}
+
 	@Override
 	public void run()
 	{
@@ -42,6 +51,7 @@ public class DealerClass implements Runnable
 						theCar.getEngine().getIdNumber() + ", Accessory: " +
 						theCar.getAccessory().getIdNumber() + ")"
 				);
+				notifyTransactionCounterListener(transactionCounter.incrementAndGet()); //SWING
 				Thread.sleep(timeout);
 			}
 		}
@@ -50,4 +60,21 @@ public class DealerClass implements Runnable
 			theLogger.info("DealerClass was interrupted");
 		}
 	}
+
+	//SWING
+	List<TransactionListener> theListeners = new ArrayList<>();
+
+	public void addTransactionCounterListener(TransactionListener newListener)
+	{
+		theListeners.add(newListener);
+	}
+
+	void notifyTransactionCounterListener(int count)
+	{
+		for (TransactionListener lstnr : theListeners)
+		{
+			lstnr.totalTransactions(count);
+		}
+	}
+
 }

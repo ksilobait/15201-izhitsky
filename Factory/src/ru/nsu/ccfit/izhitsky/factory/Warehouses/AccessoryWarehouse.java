@@ -9,6 +9,7 @@ public class AccessoryWarehouse
 	public AccessoryWarehouse(int size_)
 	{
 		theQueue = new MyBlockingQueue<>(size_);
+		notifyMaximumCapacityListener(size_);
 	}
 
 	public void push(Accessory o) throws InterruptedException

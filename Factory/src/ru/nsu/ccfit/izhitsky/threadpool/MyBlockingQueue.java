@@ -13,6 +13,11 @@ public class MyBlockingQueue<T>
 		theQueue = new LinkedList<>();
 	}
 
+	public int getSize()
+	{
+		return theQueue.size();
+	}
+
 	public synchronized void push(T item) throws InterruptedException
 	{
 		while (theQueue.size() == maxSize) //overload

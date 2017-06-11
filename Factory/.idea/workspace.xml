@@ -16,28 +16,8 @@
       <file leaf-file-name="AccessoryWarehouse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/AccessoryWarehouse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2000">
-              <caret line="100" column="20" lean-forward="false" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
+            <state relative-caret-position="220">
+              <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,79 +25,121 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Factory.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Factory.iml">
+      <file leaf-file-name="EngineWarehouse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/EngineWarehouse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="212">
+              <caret line="52" column="5" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+              <folding>
+                <element signature="e#853#854#0" expanded="true" />
+                <element signature="e#889#890#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoachworkWarehouse.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/CoachworkWarehouse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding>
+                <element signature="e#874#875#0" expanded="true" />
+                <element signature="e#910#911#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WarehouseCapacityListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/WarehouseCapacityListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.xml">
+      <file leaf-file-name="EngineSupplier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/EngineSupplier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
-              <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="240">
+              <caret line="66" column="48" lean-forward="false" selection-start-line="66" selection-start-column="48" selection-end-line="66" selection-end-column="48" />
+              <folding>
+                <element signature="e#1594#1595#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyBlockingQueue.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyBlockingQueue.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyBlockingQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyBlockingQueueTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/ru/nsu/ccfit/izhitsky/threadpool/MyBlockingQueueTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+            <state relative-caret-position="152">
+              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#285#286#0" expanded="true" />
+                <element signature="e#314#315#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyConfigReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/MyConfigReader.java">
+      <file leaf-file-name="CarWarehouseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CarWarehouseController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="92">
+              <caret line="59" column="41" lean-forward="false" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1463#1464#0" expanded="true" />
+                <element signature="e#1499#1500#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CarAssembler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/CarAssembler.java">
+      <file leaf-file-name="AccessorySupplier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/AccessorySupplier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="25" />
+            <state relative-caret-position="218">
+              <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1633#1634#0" expanded="true" />
+                <element signature="e#1669#1670#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyThreadPool.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyThreadPool.java">
+      <file leaf-file-name="DealerClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/DealerClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="220">
+              <caret line="71" column="41" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#993#994#0" expanded="true" />
+                <element signature="e#1022#1023#0" expanded="true" />
+                <element signature="e#1757#1758#0" expanded="true" />
+                <element signature="e#1793#1794#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoachworkSupplier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CoachworkSupplier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1634#1635#0" expanded="true" />
+                <element signature="e#1670#1671#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,9 +150,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -182,15 +205,23 @@
         <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/Factory/Main.java" />
         <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyThreadPool.java" />
         <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Parts/Car.java" />
-        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyBlockingQueue.java" />
-        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/DealerClass.java" />
-        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/AccessorySupplier.java" />
-        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CarWarehouseController.java" />
-        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CoachworkSupplier.java" />
-        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/EngineSupplier.java" />
-        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Main.java" />
         <option value="$PROJECT_DIR$/build.xml" />
         <option value="$PROJECT_DIR$/tests/ru/nsu/ccfit/izhitsky/threadpool/MyBlockingQueueTest.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Main.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/TheFactory.form" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/SizeChangedListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/TheFactory.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/TransactionListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/WarehouseCapacityListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/EngineSupplier.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/DealerClass.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CoachworkSupplier.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CarWarehouseController.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/AccessorySupplier.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyBlockingQueue.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/EngineWarehouse.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/CoachworkWarehouse.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/AccessoryWarehouse.java" />
       </list>
     </option>
   </component>
@@ -213,7 +244,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -338,19 +371,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="izhitsky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Suppliers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build.xml" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="project.propGUI" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -692,40 +735,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Factory.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/MyConfigReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2220">
-          <caret line="134" column="1" lean-forward="false" selection-start-line="134" selection-start-column="1" selection-end-line="134" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyThreadPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Parts/Accessory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -864,20 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/CoachworkWarehouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/EngineWarehouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/log4j-api-2.8.2.jar!/org/apache/logging/log4j/LogManager.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -889,19 +884,11 @@
     <entry file="file://$PROJECT_DIR$/factoryNEWANT.properties" />
     <entry file="file://$PROJECT_DIR$/src/config.txt" />
     <entry file="file://$PROJECT_DIR$/log4j2.xml" />
-    <entry file="file://$PROJECT_DIR$/log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/log.txt" />
     <entry file="jar:///usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar!/java/util/concurrent/atomic/AtomicInteger.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -917,10 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#398#399#0" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -931,52 +914,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/DealerClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/AccessorySupplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CarWarehouseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CoachworkSupplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/EngineSupplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -998,19 +935,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
+        <state relative-caret-position="440">
           <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/MyConfigReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,17 +951,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/AccessoryWarehouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
+        <state relative-caret-position="40">
           <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
           <folding />
         </state>
@@ -1042,18 +961,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/ru/nsu/ccfit/izhitsky/threadpool/MyBlockingQueueTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
+        <state relative-caret-position="140">
           <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2000">
-          <caret line="100" column="20" lean-forward="false" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1062,7 +971,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyThreadPool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="100">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1070,11 +979,166 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/MyConfigReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-760">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/TheFactory.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/TheFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="174" column="54" lean-forward="true" selection-start-line="174" selection-start-column="54" selection-end-line="174" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4202#4567#0" expanded="true" />
+            <element signature="e#4566#4567#0" expanded="true" />
+            <element signature="e#5180#5530#0" expanded="true" />
+            <element signature="e#5529#5530#0" expanded="true" />
+            <element signature="e#6119#6484#0" expanded="true" />
+            <element signature="e#6483#6484#0" expanded="true" />
+            <element signature="e#7097#7444#0" expanded="true" />
+            <element signature="e#7443#7444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/TransactionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="9" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/EngineSupplier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="66" column="48" lean-forward="false" selection-start-line="66" selection-start-column="48" selection-end-line="66" selection-end-column="48" />
+          <folding>
+            <element signature="e#1594#1595#0" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/DealerClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="71" column="41" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+            <element signature="e#1793#1794#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CoachworkSupplier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1634#1635#0" expanded="true" />
+            <element signature="e#1670#1671#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/CarWarehouseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="59" column="41" lean-forward="false" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1463#1464#0" expanded="true" />
+            <element signature="e#1499#1500#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Suppliers/AccessorySupplier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1633#1634#0" expanded="true" />
+            <element signature="e#1669#1670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/WarehouseCapacityListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/threadpool/MyBlockingQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="152">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="e#285#286#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/EngineWarehouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <element signature="e#853#854#0" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/AccessoryWarehouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/izhitsky/factory/Warehouses/CoachworkWarehouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#874#875#0" expanded="true" />
+            <element signature="e#910#911#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

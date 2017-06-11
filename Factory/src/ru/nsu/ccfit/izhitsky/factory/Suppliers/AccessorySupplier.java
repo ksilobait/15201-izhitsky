@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.izhitsky.factory.Parts.Accessory;
 import ru.nsu.ccfit.izhitsky.factory.Warehouses.AccessoryWarehouse;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AccessorySupplier implements Runnable
@@ -13,6 +15,7 @@ public class AccessorySupplier implements Runnable
 
 	private AccessoryWarehouse theWarehouse;
 	private static AtomicInteger availableID = new AtomicInteger();
+	private static AtomicInteger transactionCounter = new AtomicInteger();
 	private int timeout;
 
 	public AccessorySupplier(AccessoryWarehouse warehouseAccessory_, int timeout_)
@@ -28,6 +31,11 @@ public class AccessorySupplier implements Runnable
 		return theThread;
 	}
 
+	public void setTimeout(int timeout)
+	{
+		this.timeout = timeout;
+	}
+
 	@Override
 	public void run()
 	{
@@ -37,12 +45,29 @@ public class AccessorySupplier implements Runnable
 			{
 				theWarehouse.push(new Accessory(availableID.get()));
 				theLogger.info("pushed Accessory #" + availableID.getAndIncrement() + " into Accessory WH");
+				notifyTransactionCounterListener(transactionCounter.incrementAndGet()); //SWING
 				Thread.sleep(timeout);
 			}
 		}
 		catch (InterruptedException e)
 		{
 			theLogger.info("AccessorySupplier was interrupted");
+		}
+	}
+
+	//SWING
+	List<TransactionListener> theListeners = new ArrayList<>();
+
+	public void addTransactionCounterListener(TransactionListener newListener)
+	{
+		theListeners.add(newListener);
+	}
+
+	void notifyTransactionCounterListener(int count)
+	{
+		for (TransactionListener lstnr : theListeners)
+		{
+			lstnr.totalTransactions(count);
 		}
 	}
 }

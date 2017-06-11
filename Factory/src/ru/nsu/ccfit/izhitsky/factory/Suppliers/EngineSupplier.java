@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.izhitsky.factory.Parts.Engine;
 import ru.nsu.ccfit.izhitsky.factory.Warehouses.EngineWarehouse;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EngineSupplier implements Runnable
@@ -13,6 +15,7 @@ public class EngineSupplier implements Runnable
 
 	private EngineWarehouse theWarehouse;
 	private static AtomicInteger availableID = new AtomicInteger();
+	private static AtomicInteger transactionCounter = new AtomicInteger();
 	private int timeout;
 
 	public EngineSupplier(EngineWarehouse warehouseEngine_, int timeout_)
@@ -28,6 +31,11 @@ public class EngineSupplier implements Runnable
 		return theThread;
 	}
 
+	public void setTimeout(int timeout)
+	{
+		this.timeout = timeout;
+	}
+
 	@Override
 	public void run()
 	{
@@ -37,12 +45,30 @@ public class EngineSupplier implements Runnable
 			{
 				theWarehouse.push(new Engine(availableID.get()));
 				theLogger.info("pushed Engine #" + availableID.getAndIncrement() + "into Engine WH");
+				notifyTransactionCounterListener(transactionCounter.incrementAndGet()); //SWING
 				Thread.sleep(timeout);
 			}
 		}
 		catch (InterruptedException e)
 		{
 			theLogger.info("EngineSupplier was interrupted");
+		}
+	}
+
+
+	//SWING
+	List<TransactionListener> theListeners = new ArrayList<>();
+
+	public void addTransactionCounterListener(TransactionListener newListener)
+	{
+		theListeners.add(newListener);
+	}
+
+	void notifyTransactionCounterListener(int count)
+	{
+		for (TransactionListener lstnr : theListeners)
+		{
+			lstnr.totalTransactions(count);
 		}
 	}
 }

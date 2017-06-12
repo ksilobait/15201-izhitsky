@@ -7,12 +7,11 @@ import java.util.List;
 
 public class EngineWarehouse
 {
-	MyBlockingQueue<Engine> theQueue;
+	private MyBlockingQueue<Engine> theQueue;
 
 	public EngineWarehouse(int size_)
 	{
 		theQueue = new MyBlockingQueue<>(size_);
-		notifyMaximumCapacityListener(size_);
 	}
 
 	public void push(Engine o) throws InterruptedException
@@ -29,26 +28,18 @@ public class EngineWarehouse
 	}
 
 	//SWING
-	List<WarehouseCapacityListener> theListeners = new ArrayList<>();
+	private List<WarehouseCapacityListener> theListeners = new ArrayList<>();
 
 	public void addCapacityListener(WarehouseCapacityListener newListener)
 	{
 		theListeners.add(newListener);
 	}
 
-	void notifyCurrentCapacityListener(int count)
+	private void notifyCurrentCapacityListener(int count)
 	{
 		for (WarehouseCapacityListener lstnr : theListeners)
 		{
 			lstnr.getCurrentCapacity(count);
-		}
-	}
-
-	void notifyMaximumCapacityListener(int count)
-	{
-		for (WarehouseCapacityListener lstnr : theListeners)
-		{
-			lstnr.getMaximumCapacity(count);
 		}
 	}
 }

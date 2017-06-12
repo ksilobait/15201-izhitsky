@@ -18,6 +18,8 @@ public class MyBlockingQueue<T>
 		return theQueue.size();
 	}
 
+	public int getMaxSize() { return maxSize; }
+
 	public synchronized void push(T item) throws InterruptedException
 	{
 		while (theQueue.size() == maxSize) //overload

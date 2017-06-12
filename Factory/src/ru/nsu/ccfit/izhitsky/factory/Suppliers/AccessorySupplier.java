@@ -17,6 +17,7 @@ public class AccessorySupplier implements Runnable
 	private static AtomicInteger availableID = new AtomicInteger();
 	private static AtomicInteger transactionCounter = new AtomicInteger();
 	private int timeout;
+	private final Object timeoutLock = new Object();
 
 	public AccessorySupplier(AccessoryWarehouse warehouseAccessory_, int timeout_)
 	{
@@ -33,7 +34,11 @@ public class AccessorySupplier implements Runnable
 
 	public void setTimeout(int timeout)
 	{
-		this.timeout = timeout;
+		synchronized (timeoutLock)
+		{
+			this.timeout = timeout;
+			timeoutLock.notifyAll();
+		}
 	}
 
 	@Override
@@ -41,12 +46,12 @@ public class AccessorySupplier implements Runnable
 	{
 		try
 		{
-			while (true)
+			while (!Thread.interrupted())
 			{
 				theWarehouse.push(new Accessory(availableID.get()));
 				theLogger.info("pushed Accessory #" + availableID.getAndIncrement() + " into Accessory WH");
 				notifyTransactionCounterListener(transactionCounter.incrementAndGet()); //SWING
-				Thread.sleep(timeout);
+				mySleep(timeout);
 			}
 		}
 		catch (InterruptedException e)
@@ -55,15 +60,26 @@ public class AccessorySupplier implements Runnable
 		}
 	}
 
+	private void mySleep(int ms) throws InterruptedException
+	{
+		synchronized (timeoutLock)
+		{
+			if (ms > 0)
+			{
+				timeoutLock.wait(ms);
+			}
+		}
+	}
+
 	//SWING
-	List<TransactionListener> theListeners = new ArrayList<>();
+	private List<TransactionListener> theListeners = new ArrayList<>();
 
 	public void addTransactionCounterListener(TransactionListener newListener)
 	{
 		theListeners.add(newListener);
 	}
 
-	void notifyTransactionCounterListener(int count)
+	private void notifyTransactionCounterListener(int count)
 	{
 		for (TransactionListener lstnr : theListeners)
 		{

@@ -3,17 +3,11 @@ package ru.nsu.ccfit.izhitsky.threadpool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 public class MyThreadPool
 {
 	private MyBlockingQueue<Runnable> queueOfTasks;
 	private Thread[] poolOfThreads;
 	private static final Logger theLogger = LogManager.getLogger(MyThreadPool.class); //log4j
-
-	public Thread[] getPoolOfThreads()
-	{
-		return poolOfThreads;
-	}
 
 	public MyThreadPool(int threadPoolSize_, int taskQueueSize_)
 	{
@@ -28,6 +22,14 @@ public class MyThreadPool
 		}
 	}
 
+	public Thread[] getPoolOfThreads()
+	{
+		return poolOfThreads;
+	}
+
+	public int getThreadPoolSize() { return queueOfTasks.getSize(); }
+
+
 	class ThreadPoolRunnable implements Runnable
 	{
 		@Override
@@ -35,8 +37,11 @@ public class MyThreadPool
 		{
 			try
 			{
-				Runnable theTask = queueOfTasks.pop();
-				theTask.run();
+				while (!Thread.interrupted())
+				{
+					Runnable theTask = queueOfTasks.pop();
+					theTask.run();
+				}
 			}
 			catch (InterruptedException e)
 			{
@@ -48,15 +53,6 @@ public class MyThreadPool
 	public void addTask(Runnable task) throws InterruptedException
 	{
 		queueOfTasks.push(task);
-	}
-
-
-	public void interrupt()
-	{
-		for (Thread t : poolOfThreads)
-		{
-			t.interrupt();
-		}
 	}
 
 }

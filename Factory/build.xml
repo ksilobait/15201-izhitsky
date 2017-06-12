@@ -1,7 +1,8 @@
 <project name="Factory" default="thebuild">
 
 	<path id="classpath">
-		<pathelement location="lib/log4j-api-2.8.2.jar"/>
+        <pathelement location="lib/javac2-7.0.3.jar"/>
+        <pathelement location="lib/log4j-api-2.8.2.jar"/>
 		<pathelement location="lib/log4j-core-2.8.2.jar"/>
 		<pathelement location="build/src"/>
 	</path>
@@ -50,7 +51,6 @@
 		<delete dir="build"/>
 		<delete dir="out"/>
 		<delete file="Factory.jar"/>
-        <delete file="log.txt"/>
 	</target>
 
 </project>

@@ -1,6 +1,5 @@
 package ru.nsu.ccfit.izhitsky.factory.Suppliers;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.izhitsky.factory.Parts.Coachwork;
@@ -18,6 +17,7 @@ public class CoachworkSupplier implements Runnable
 	private static AtomicInteger availableID = new AtomicInteger();
 	private static AtomicInteger transactionCounter = new AtomicInteger();
 	private int timeout;
+	private final Object timeoutLock = new Object();
 
 	public CoachworkSupplier(CoachworkWarehouse warehouseCoachwork_, int timeout_)
 	{
@@ -34,7 +34,11 @@ public class CoachworkSupplier implements Runnable
 
 	public void setTimeout(int timeout)
 	{
-		this.timeout = timeout;
+		synchronized (timeoutLock)
+		{
+			this.timeout = timeout;
+			timeoutLock.notifyAll();
+		}
 	}
 
 	@Override
@@ -42,12 +46,12 @@ public class CoachworkSupplier implements Runnable
 	{
 		try
 		{
-			while (true)
+			while (!Thread.interrupted())
 			{
 				theWarehouse.push(new Coachwork(availableID.get()));
 				theLogger.info("pushed Coachwork #" + availableID.getAndIncrement() + " into Coachwork WH");
 				notifyTransactionCounterListener(transactionCounter.incrementAndGet()); //SWING
-				Thread.sleep(timeout);
+				mySleep(timeout);
 			}
 		}
 		catch (InterruptedException e)
@@ -56,15 +60,26 @@ public class CoachworkSupplier implements Runnable
 		}
 	}
 
+	private void mySleep(int ms) throws InterruptedException
+	{
+		synchronized (timeoutLock)
+		{
+			if (ms > 0)
+			{
+				timeoutLock.wait(ms);
+			}
+		}
+	}
+
 	//SWING
-	List<TransactionListener> theListeners = new ArrayList<>();
+	private List<TransactionListener> theListeners = new ArrayList<>();
 
 	public void addTransactionCounterListener(TransactionListener newListener)
 	{
 		theListeners.add(newListener);
 	}
 
-	void notifyTransactionCounterListener(int count)
+	private void notifyTransactionCounterListener(int count)
 	{
 		for (TransactionListener lstnr : theListeners)
 		{

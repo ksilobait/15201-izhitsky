@@ -14,7 +14,7 @@ public class DealerClass implements Runnable
 	private static final Logger theLogger = LogManager.getLogger(EngineSupplier.class);
 	private static AtomicInteger id = new AtomicInteger();
 	private static AtomicInteger transactionCounter = new AtomicInteger();
-
+	private final Object timeoutLock = new Object();
 
 	private CarWarehouse carWarehouse;
 	private int timeout;
@@ -34,7 +34,11 @@ public class DealerClass implements Runnable
 
 	public void setTimeout(int timeout)
 	{
-		this.timeout = timeout;
+		synchronized (timeoutLock)
+		{
+			this.timeout = timeout;
+			timeoutLock.notifyAll();
+		}
 	}
 
 	@Override
@@ -42,7 +46,7 @@ public class DealerClass implements Runnable
 	{
 		try
 		{
-			while (true)
+			while (!Thread.interrupted())
 			{
 				Car theCar = carWarehouse.pop();
 				theLogger.info("Dealer " + id.get() + ": Auto " +
@@ -52,7 +56,7 @@ public class DealerClass implements Runnable
 						theCar.getAccessory().getIdNumber() + ")"
 				);
 				notifyTransactionCounterListener(transactionCounter.incrementAndGet()); //SWING
-				Thread.sleep(timeout);
+				mySleep(timeout);
 			}
 		}
 		catch (InterruptedException e)
@@ -61,15 +65,26 @@ public class DealerClass implements Runnable
 		}
 	}
 
+	private void mySleep(int ms) throws InterruptedException
+	{
+		synchronized (timeoutLock)
+		{
+			if (ms > 0)
+			{
+				timeoutLock.wait(ms);
+			}
+		}
+	}
+
 	//SWING
-	List<TransactionListener> theListeners = new ArrayList<>();
+	private List<TransactionListener> theListeners = new ArrayList<>();
 
 	public void addTransactionCounterListener(TransactionListener newListener)
 	{
 		theListeners.add(newListener);
 	}
 
-	void notifyTransactionCounterListener(int count)
+	private void notifyTransactionCounterListener(int count)
 	{
 		for (TransactionListener lstnr : theListeners)
 		{

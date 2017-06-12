@@ -7,51 +7,51 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-public class MyConfigReader
+class MyConfigReader
 {
 	private static final Logger theLogger = LogManager.getLogger(Main.class);
 
-	public int getEngineWarehouseSize()
+	int getEngineWarehouseSize()
 	{
 		return engineWarehouseSize;
 	}
 
-	public int getCoachworkWarehouseSize()
+	int getCoachworkWarehouseSize()
 	{
 		return coachworkWarehouseSize;
 	}
 
-	public int getAccessoryWarehouseSize()
+	int getAccessoryWarehouseSize()
 	{
 		return accessoryWarehouseSize;
 	}
 
-	public int getAccessorySuppliersNumber()
+	int getAccessorySuppliersNumber()
 	{
 		return accessorySuppliersNumber;
 	}
 
-	public int getDealersNumber()
+	int getDealersNumber()
 	{
 		return dealersNumber;
 	}
 
-	public boolean isLogSale()
+	boolean isLogSale()
 	{
 		return logSale;
 	}
 
-	public int getThreadPoolSize()
+	int getThreadPoolSize()
 	{
 		return threadPoolSize;
 	}
 
-	public int getTaskQueueSize()
+	int getTaskQueueSize()
 	{
 		return taskQueueSize;
 	}
 
-	public int getCarWarehouseSize()
+	int getCarWarehouseSize()
 	{
 		return carWarehouseSize;
 	}
@@ -73,22 +73,22 @@ public class MyConfigReader
 	private int accessorySupplierTimeout = 300;
 	private int dealerTimeout = 300;
 
-	public int getCoachworkSupplierTimeout()
+	int getCoachworkSupplierTimeout()
 	{
 		return coachworkSupplierTimeout;
 	}
 
-	public int getEngineSupplierTimeout()
+	int getEngineSupplierTimeout()
 	{
 		return engineSupplierTimeout;
 	}
 
-	public int getAccessorySupplierTimeout()
+	int getAccessorySupplierTimeout()
 	{
 		return accessorySupplierTimeout;
 	}
 
-	public int getDealerTimeout()
+	int getDealerTimeout()
 	{
 		return dealerTimeout;
 	}

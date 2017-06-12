@@ -17,7 +17,7 @@ public class CarAssembler
 	private CarWarehouse theCarWarehouse;
 	private int currentID;
 
-	public CarAssembler(int threadPoolSize_, int taskQueueSize_)
+	CarAssembler(int threadPoolSize_, int taskQueueSize_)
 	{
 		this.theThreadPool = new MyThreadPool(threadPoolSize_, taskQueueSize_);
 	}
@@ -67,22 +67,42 @@ public class CarAssembler
 		return theThreadPool;
 	}
 
-	public void setEngineWarehouse(EngineWarehouse theEngineWarehouse_)
+	CarWarehouse getTheCarWarehouse()
+	{
+		return theCarWarehouse;
+	}
+
+	EngineWarehouse getTheEngineWarehouse()
+	{
+		return theEngineWarehouse;
+	}
+
+	CoachworkWarehouse getTheCoachworkWarehouse()
+	{
+		return theCoachworkWarehouse;
+	}
+
+	AccessoryWarehouse getTheAccessoryWarehouse()
+	{
+		return theAccessoryWarehouse;
+	}
+
+	void setEngineWarehouse(EngineWarehouse theEngineWarehouse_)
 	{
 		this.theEngineWarehouse = theEngineWarehouse_;
 	}
 
-	public void setCoachworkWarehouse(CoachworkWarehouse theCoachworkWarehouse_)
+	void setCoachworkWarehouse(CoachworkWarehouse theCoachworkWarehouse_)
 	{
 		this.theCoachworkWarehouse = theCoachworkWarehouse_;
 	}
 
-	public void setAccessoryWarehouse(AccessoryWarehouse theAccessoryWarehouse_)
+	void setAccessoryWarehouse(AccessoryWarehouse theAccessoryWarehouse_)
 	{
 		this.theAccessoryWarehouse = theAccessoryWarehouse_;
 	}
 
-	public void setCarWarehouse(CarWarehouse theCarWarehouse_)
+	void setCarWarehouse(CarWarehouse theCarWarehouse_)
 	{
 		this.theCarWarehouse = theCarWarehouse_;
 	}

@@ -17,6 +17,7 @@ public class EngineSupplier implements Runnable
 	private static AtomicInteger availableID = new AtomicInteger();
 	private static AtomicInteger transactionCounter = new AtomicInteger();
 	private int timeout;
+	private final Object timeoutLock = new Object();
 
 	public EngineSupplier(EngineWarehouse warehouseEngine_, int timeout_)
 	{
@@ -33,7 +34,11 @@ public class EngineSupplier implements Runnable
 
 	public void setTimeout(int timeout)
 	{
-		this.timeout = timeout;
+		synchronized (timeoutLock)
+		{
+			this.timeout = timeout;
+			timeoutLock.notifyAll();
+		}
 	}
 
 	@Override
@@ -41,12 +46,12 @@ public class EngineSupplier implements Runnable
 	{
 		try
 		{
-			while (true)
+			while (!Thread.interrupted())
 			{
 				theWarehouse.push(new Engine(availableID.get()));
 				theLogger.info("pushed Engine #" + availableID.getAndIncrement() + "into Engine WH");
 				notifyTransactionCounterListener(transactionCounter.incrementAndGet()); //SWING
-				Thread.sleep(timeout);
+				mySleep(timeout);
 			}
 		}
 		catch (InterruptedException e)
@@ -55,16 +60,26 @@ public class EngineSupplier implements Runnable
 		}
 	}
 
+	private void mySleep(int ms) throws InterruptedException
+	{
+		synchronized (timeoutLock)
+		{
+			if (ms > 0)
+			{
+				timeoutLock.wait(ms);
+			}
+		}
+	}
 
 	//SWING
-	List<TransactionListener> theListeners = new ArrayList<>();
+	private List<TransactionListener> theListeners = new ArrayList<>();
 
 	public void addTransactionCounterListener(TransactionListener newListener)
 	{
 		theListeners.add(newListener);
 	}
 
-	void notifyTransactionCounterListener(int count)
+	private void notifyTransactionCounterListener(int count)
 	{
 		for (TransactionListener lstnr : theListeners)
 		{

@@ -25,13 +25,6 @@ public class AccessorySupplier implements Runnable
 		timeout = timeout_;
 	}
 
-	public Thread getThread()
-	{
-		Thread theThread = new Thread(this);
-		theThread.setName("ASThread");
-		return theThread;
-	}
-
 	public void setTimeout(int timeout)
 	{
 		synchronized (timeoutLock)

@@ -25,13 +25,6 @@ public class EngineSupplier implements Runnable
 		timeout = timeout_;
 	}
 
-	public Thread getThread()
-	{
-		Thread theThread = new Thread(this);
-		theThread.setName("ESThread");
-		return theThread;
-	}
-
 	public void setTimeout(int timeout)
 	{
 		synchronized (timeoutLock)

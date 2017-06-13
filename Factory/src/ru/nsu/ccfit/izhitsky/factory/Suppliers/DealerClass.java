@@ -25,13 +25,6 @@ public class DealerClass implements Runnable
 		this.timeout = timeout_;
 	}
 
-	public Thread getThread()
-	{
-		Thread theThread = new Thread(this);
-		theThread.setName("DealerThread#" + id.getAndIncrement());
-		return theThread;
-	}
-
 	public void setTimeout(int timeout)
 	{
 		synchronized (timeoutLock)

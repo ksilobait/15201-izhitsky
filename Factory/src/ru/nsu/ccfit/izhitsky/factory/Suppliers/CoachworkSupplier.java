@@ -25,13 +25,6 @@ public class CoachworkSupplier implements Runnable
 		timeout = timeout_;
 	}
 
-	public Thread getThread()
-	{
-		Thread theThread = new Thread(this);
-		theThread.setName("CSThread");
-		return theThread;
-	}
-
 	public void setTimeout(int timeout)
 	{
 		synchronized (timeoutLock)

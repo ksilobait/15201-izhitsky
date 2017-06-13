@@ -26,13 +26,6 @@ public class CarWarehouseController implements Runnable
 		this.theAssembler = theAssembler;
 	}
 
-	public Thread getThread()
-	{
-		Thread theThread = new Thread(this);
-		theThread.setName("CWCThread");
-		return theThread;
-	}
-
 	@Override
 	public void run()
 	{

@@ -87,20 +87,20 @@ public class TheFactory
 		dealer1Label.setText(String.valueOf(theConfigReader.getDealerTimeout()));
 
 		//prepare to launch (get threads)
-		theCoachworkSupplierThread = theCoachworkSupplier.getThread(); //t1
-		theEngineSupplierThread = theEngineSupplier.getThread(); //t2
+		theCoachworkSupplierThread = new Thread(theCoachworkSupplier, "CSThread"); //t1
+		theEngineSupplierThread = new Thread(theEngineSupplier, "ESThread"); //t2
 		int numberOfAccessorySuppliers = theConfigReader.getAccessorySuppliersNumber(); //[t3...
 		theAccessorySupplierThreads = new Thread[numberOfAccessorySuppliers];
 		for (int i = 0; i < numberOfAccessorySuppliers; i++)
 		{
-			theAccessorySupplierThreads[i] = theAccessorySupplier.getThread(); //...t3]
+			theAccessorySupplierThreads[i] = new Thread(theAccessorySupplier, "ASThread#" + i); //...t3]
 		}
-		theCarWarehouseControllerThread = theCarWarehouseController.getThread(); //t4
+		theCarWarehouseControllerThread = new Thread(theCarWarehouseController, "CWCThread"); //t4
 		int numberOfDealers = theConfigReader.getDealersNumber(); //[t5...
 		theDealerThreads = new Thread[numberOfDealers];
 		for (int i = 0; i < numberOfDealers; i++)
 		{
-			theDealerThreads[i] = theDealerClass.getThread(); //...t5]
+			theDealerThreads[i] = new Thread(theDealerClass, "DThread#" + i); //...t5]
 		}
 
 		//-----------------------------------------------------------------------------------

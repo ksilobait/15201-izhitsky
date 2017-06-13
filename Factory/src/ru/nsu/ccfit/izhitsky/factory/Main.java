@@ -30,7 +30,7 @@ public class Main
 		}
 
 		TheFactory theFactory = new TheFactory(theConfigReader);
-
+		GUIFactory theGUIFactory = new GUIFactory(theFactory);
 		theLogger.info("everything's ready");
 	}
 }

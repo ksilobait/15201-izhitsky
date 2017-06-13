@@ -1,6 +1,6 @@
-package ru.nsu.ccfit.izhitsky;
+package ru.nsu.ccfit.izhitsky.Client;
 
-import sun.rmi.runtime.Log;
+import ru.nsu.ccfit.izhitsky.Server.Server;
 
 import javax.swing.*;
 import java.io.PrintWriter;
@@ -9,8 +9,8 @@ import java.net.Socket;
 public class A_Chat_Client_GUI
 {
 	//Globals
-	private static A_Chat_Client ChatClient;
-	public static String UserName = "Anonymous";
+	private static RunnableChatClient ChatClient;
+	static String UserName = "Anonymous";
 
 	//GUI Globals - Main Window
 	public static JFrame MainWindow = new JFrame();
@@ -43,7 +43,6 @@ public class A_Chat_Client_GUI
 		BuildMainWindow();
 		Initialize();
 	}
-	//----------------------------------------------------------------------------------
 
 	public static void Connect()
 	{
@@ -54,7 +53,7 @@ public class A_Chat_Client_GUI
 			Socket SOCK = new Socket(HOST, PORT);
 			System.out.println("You connected to: " + HOST);
 
-			ChatClient = new A_Chat_Client(SOCK);
+			ChatClient = new RunnableChatClient(SOCK);
 
 			//Send Name to add to "OnLine" list
 			PrintWriter OUT = new PrintWriter(SOCK.getOutputStream());
@@ -94,7 +93,7 @@ public class A_Chat_Client_GUI
 		Login_Action();
 		LogInWindow.setVisible(true);
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void BuildMainWindow()
 	{
 		MainWindow.setTitle(UserName + "'s Chat Box");
@@ -105,7 +104,7 @@ public class A_Chat_Client_GUI
 		MainWindow_Action();
 		MainWindow.setVisible(true);
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void ConfigureMainWindow()
 	{
 		MainWindow.setBackground(new java.awt.Color(255, 255, 255));
@@ -114,13 +113,13 @@ public class A_Chat_Client_GUI
 
 		B_SEND.setBackground(new java.awt.Color(0, 0, 255));
 		B_SEND.setForeground(new java.awt.Color(255, 255, 255));
-		B_SEND.setText("SEND");
+		B_SEND.setText("send");
 		MainWindow.getContentPane().add(B_SEND);
 		B_SEND.setBounds(250, 40, 81, 25);
 
 		B_DISCONNECT.setBackground(new java.awt.Color(0, 0, 255));
 		B_DISCONNECT.setForeground(new java.awt.Color(255, 255, 255));
-		B_DISCONNECT.setText("DISCONNECT");
+		B_DISCONNECT.setText("disconnect");
 		MainWindow.getContentPane().add(B_DISCONNECT);
 		B_DISCONNECT.setBounds(10, 40, 110, 25);
 
@@ -198,7 +197,7 @@ public class A_Chat_Client_GUI
 		MainWindow.getContentPane().add(L_LoggedInAsBox);
 		L_LoggedInAsBox.setBounds(340, 17, 150, 20);
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void Login_Action()
 	{
 		B_ENTER.addActionListener(
@@ -210,14 +209,14 @@ public class A_Chat_Client_GUI
 					}
 				});
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void ACTION_B_ENTER()
 	{
 		if (!TF_UserNameBox.getText().equals(""))
 		{
 			UserName = TF_UserNameBox.getText().trim();
 			L_LoggedInAsBox.setText(UserName);
-			A_Chat_Server.CurrentUsers.add(UserName);
+			Server.currentUsers.add(UserName);
 			MainWindow.setTitle(UserName + "'s Chat Box");
 			LogInWindow.setVisible(false);
 			B_SEND.setEnabled(true);
@@ -230,7 +229,7 @@ public class A_Chat_Client_GUI
 			JOptionPane.showMessageDialog(null, "Please enter a name!");
 		}
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void MainWindow_Action()
 	{
 		B_SEND.addActionListener(
@@ -283,28 +282,28 @@ public class A_Chat_Client_GUI
 				}
 		);
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void ACTION_B_SEND()
 	{
 		if (!TF_Message.getText().equals(""))
 		{
-			ChatClient.SEND(TF_Message.getText());
+			ChatClient.send(TF_Message.getText());
 			TF_Message.requestFocus();
 		}
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void ACTION_B_DISCONNECT()
 	{
 		try
 		{
-			ChatClient.DISCONNECT();
+			ChatClient.disconnect();
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	//----------------------------------------------------------------------------------
+
 	public static void ACTION_B_HELP()
 	{
 		JOptionPane.showMessageDialog(null, "Multi-Client CHAT Program");

@@ -67,22 +67,22 @@ public class CarAssembler
 		return theThreadPool;
 	}
 
-	CarWarehouse getTheCarWarehouse()
+	public CarWarehouse getTheCarWarehouse()
 	{
 		return theCarWarehouse;
 	}
 
-	EngineWarehouse getTheEngineWarehouse()
+	public EngineWarehouse getTheEngineWarehouse()
 	{
 		return theEngineWarehouse;
 	}
 
-	CoachworkWarehouse getTheCoachworkWarehouse()
+	public CoachworkWarehouse getTheCoachworkWarehouse()
 	{
 		return theCoachworkWarehouse;
 	}
 
-	AccessoryWarehouse getTheAccessoryWarehouse()
+	public AccessoryWarehouse getTheAccessoryWarehouse()
 	{
 		return theAccessoryWarehouse;
 	}

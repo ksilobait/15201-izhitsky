@@ -1,6 +1,8 @@
-package ru.nsu.ccfit.izhitsky.factory;
+package ru.nsu.ccfit.izhitsky.GUI;
 
+import ru.nsu.ccfit.izhitsky.factory.MyConfigReader;
 import ru.nsu.ccfit.izhitsky.factory.Suppliers.*;
+import ru.nsu.ccfit.izhitsky.factory.TheFactory;
 import ru.nsu.ccfit.izhitsky.factory.Warehouses.*;
 
 import javax.swing.*;
@@ -39,7 +41,7 @@ public class GUIFactory extends JFrame
 	private JLabel dealer1Label;
 	private JLabel dealer2Label;
 
-	GUIFactory(TheFactory theFactory)
+	public GUIFactory(TheFactory theFactory)
 	{
 		MyConfigReader theConfigReader = theFactory.getTheConfigReader();
 

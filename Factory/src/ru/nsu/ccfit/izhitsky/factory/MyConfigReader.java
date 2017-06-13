@@ -7,21 +7,21 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-class MyConfigReader
+public class MyConfigReader
 {
 	private static final Logger theLogger = LogManager.getLogger(Main.class);
 
-	int getEngineWarehouseSize()
+	public int getEngineWarehouseSize()
 	{
 		return engineWarehouseSize;
 	}
 
-	int getCoachworkWarehouseSize()
+	public int getCoachworkWarehouseSize()
 	{
 		return coachworkWarehouseSize;
 	}
 
-	int getAccessoryWarehouseSize()
+	public int getAccessoryWarehouseSize()
 	{
 		return accessoryWarehouseSize;
 	}
@@ -51,7 +51,7 @@ class MyConfigReader
 		return taskQueueSize;
 	}
 
-	int getCarWarehouseSize()
+	public int getCarWarehouseSize()
 	{
 		return carWarehouseSize;
 	}
@@ -73,22 +73,22 @@ class MyConfigReader
 	private int accessorySupplierTimeout = 300;
 	private int dealerTimeout = 300;
 
-	int getCoachworkSupplierTimeout()
+	public int getCoachworkSupplierTimeout()
 	{
 		return coachworkSupplierTimeout;
 	}
 
-	int getEngineSupplierTimeout()
+	public int getEngineSupplierTimeout()
 	{
 		return engineSupplierTimeout;
 	}
 
-	int getAccessorySupplierTimeout()
+	public int getAccessorySupplierTimeout()
 	{
 		return accessorySupplierTimeout;
 	}
 
-	int getDealerTimeout()
+	public int getDealerTimeout()
 	{
 		return dealerTimeout;
 	}

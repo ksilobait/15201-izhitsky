@@ -1,15 +1,13 @@
 package ru.nsu.ccfit.izhitsky.Server;
 
-import ru.nsu.ccfit.izhitsky.Server.Server;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class RunnableChatServer implements Runnable
+public class TEMP_RunnableChatServer
 {
-	private Socket SOCK;
+	/*private Socket SOCK;
 
 	public RunnableChatServer(Socket X)
 	{
@@ -20,17 +18,17 @@ public class RunnableChatServer implements Runnable
 	{
 		if (!SOCK.isConnected())
 		{
-			for (int i = 1; i <= Server.connectionArray.size(); i++) //TODO ???
+			for (int i = 1; i <= MyServer.connectionArray.size(); i++) //TODO ???
 			{
-				if (Server.connectionArray.get(i) == SOCK)
+				if (MyServer.connectionArray.get(i) == SOCK)
 				{
-					Server.connectionArray.remove(i);
+					MyServer.connectionArray.remove(i);
 				}
 			}
 
-			for (int i = 0; i < Server.connectionArray.size(); i++)
+			for (int i = 0; i < MyServer.connectionArray.size(); i++)
 			{
-				Socket tempSocket = Server.connectionArray.get(i);
+				Socket tempSocket = MyServer.connectionArray.get(i);
 				PrintWriter out = new PrintWriter(tempSocket.getOutputStream());
 				out.println(tempSocket.getLocalAddress().getHostName() + " disconnected!");
 				out.flush();
@@ -63,9 +61,9 @@ public class RunnableChatServer implements Runnable
 
 					System.out.println("Client said: " + message);
 
-					for (int i = 0; i < Server.connectionArray.size(); i++)
+					for (int i = 0; i < MyServer.connectionArray.size(); i++)
 					{
-						Socket TEMP_SOCK = Server.connectionArray.get(i);
+						Socket TEMP_SOCK = MyServer.connectionArray.get(i);
 						PrintWriter TEMP_OUT = new PrintWriter(TEMP_SOCK.getOutputStream());
 						TEMP_OUT.println(message);
 						TEMP_OUT.flush();
@@ -83,5 +81,5 @@ public class RunnableChatServer implements Runnable
 			System.out.print(e.getMessage());
 		}
 	}
-
+*/
 }

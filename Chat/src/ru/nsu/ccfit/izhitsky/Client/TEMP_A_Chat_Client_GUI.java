@@ -1,13 +1,14 @@
 package ru.nsu.ccfit.izhitsky.Client;
 
-import ru.nsu.ccfit.izhitsky.Server.Server;
+import ru.nsu.ccfit.izhitsky.Server.MyServer;
 
 import javax.swing.*;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class A_Chat_Client_GUI
+public class TEMP_A_Chat_Client_GUI
 {
+	/*
 	//Globals
 	private static RunnableChatClient ChatClient;
 	static String UserName = "Anonymous";
@@ -19,7 +20,7 @@ public class A_Chat_Client_GUI
 	private static JButton B_DISCONNECT = new JButton();
 	private static JButton B_HELP = new JButton();
 	private static JButton B_SEND = new JButton();
-	private static JLabel L_Message = new JLabel("Message: ");
+	private static JLabel L_Message = new JLabel("Messages: ");
 	public static JTextField TF_Message = new JTextField(20);
 	private static JLabel L_Conversation = new JLabel();
 	public static JTextArea TA_CONVERSATION = new JTextArea();
@@ -142,7 +143,7 @@ public class A_Chat_Client_GUI
 		MainWindow.getContentPane().add(B_ABOUT);
 		B_ABOUT.setBounds(340, 40, 75, 25);
 
-		L_Message.setText("Message:");
+		L_Message.setText("Messages:");
 		MainWindow.getContentPane().add(L_Message);
 		L_Message.setBounds(10, 10, 60, 20);
 
@@ -216,7 +217,7 @@ public class A_Chat_Client_GUI
 		{
 			UserName = TF_UserNameBox.getText().trim();
 			L_LoggedInAsBox.setText(UserName);
-			Server.currentUsers.add(UserName);
+			MyServer.currentUsers.add(UserName);
 			MainWindow.setTitle(UserName + "'s Chat Box");
 			LogInWindow.setVisible(false);
 			B_SEND.setEnabled(true);
@@ -308,4 +309,5 @@ public class A_Chat_Client_GUI
 	{
 		JOptionPane.showMessageDialog(null, "Multi-Client CHAT Program");
 	}
+	*/
 }

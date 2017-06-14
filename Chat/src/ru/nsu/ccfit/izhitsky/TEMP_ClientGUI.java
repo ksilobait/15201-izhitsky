@@ -1,16 +1,16 @@
 package ru.nsu.ccfit.izhitsky;
 
-import ru.nsu.ccfit.izhitsky.Client.RunnableChatClient;
-import ru.nsu.ccfit.izhitsky.Server.Server;
+import ru.nsu.ccfit.izhitsky.Client.TEMP_RunnableChatClient;
+import ru.nsu.ccfit.izhitsky.Server.MyServer;
 
 import javax.swing.*;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientGUI
+public class TEMP_ClientGUI
 {
 	private String UserName = "Anonymous";
-	private static RunnableChatClient ChatClient;
+	private static TEMP_RunnableChatClient ChatClient;
 
 	static private JPanel MainWindow;
 	private JPanel messagePanel;
@@ -136,7 +136,7 @@ public class ClientGUI
 		{
 			UserName = TF_UserNameBox.getText().trim();
 			L_LoggedInAsBox.setText(UserName);
-			Server.currentUsers.add(UserName);
+			MyServer.currentUsers.add(UserName);
 			MainWindow.setName(UserName + "'s Chat Box");
 			LogInWindow.setVisible(false);
 			B_SEND.setEnabled(true);
@@ -159,7 +159,7 @@ public class ClientGUI
 			Socket SOCK = new Socket(HOST, PORT);
 			System.out.println("You connected to: " + HOST);
 
-			ChatClient = new RunnableChatClient(SOCK);
+			ChatClient = new TEMP_RunnableChatClient(SOCK);
 
 			//Send Name to add to "OnLine" list
 			PrintWriter OUT = new PrintWriter(SOCK.getOutputStream());

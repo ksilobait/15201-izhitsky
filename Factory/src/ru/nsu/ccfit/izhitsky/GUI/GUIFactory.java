@@ -67,6 +67,7 @@ public class GUIFactory extends JFrame
 
 		//dealers residence (продажа машин)
 		dealer1Label.setText(String.valueOf(theConfigReader.getDealerTimeout()));
+		dealerSlider.setValue(theConfigReader.getDealerTimeout());
 
 		coachworkSlider.addMouseListener(new MouseAdapter()
 		{

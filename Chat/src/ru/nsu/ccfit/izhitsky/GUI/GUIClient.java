@@ -2,8 +2,8 @@ package ru.nsu.ccfit.izhitsky.GUI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.nsu.ccfit.izhitsky.Client.MessageHandler;
 import ru.nsu.ccfit.izhitsky.Client.MyClient;
+import ru.nsu.ccfit.izhitsky.Client.TheMessageHandler;
 import ru.nsu.ccfit.izhitsky.Messages.*;
 import ru.nsu.ccfit.izhitsky.User;
 
@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class GUIClient implements MessageHandler
+public class GUIClient extends TheMessageHandler
 {
 	private static final Logger theLogger = LogManager.getLogger(GUIClient.class);
 
@@ -45,6 +45,8 @@ public class GUIClient implements MessageHandler
 
 	public GUIClient(MyClient theClient_)
 	{
+		super(theClient_);
+
 		this.theClient = theClient_;
 
 		theFrame = new JFrame("Chat Client Main Window");

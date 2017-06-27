@@ -54,7 +54,7 @@ public class MyClient
 	private ArrayBlockingQueue<ClientMessage> messagesQueue;
 	private ArrayBlockingQueue<Document> docMessagesQueue;
 	private List<User> theUsers;
-	private MessageHandler theMessageHandler;
+	private TheMessageHandler theMessageHandler;
 	private TheXMLMessageHandler theXMLMessageHandler;
 
 	public static void main(String[] args)

@@ -1,7 +1,7 @@
 package ru.nsu.ccfit.izhitsky.Messages;
 
-import ru.nsu.ccfit.izhitsky.Client.MessageHandler;
 import ru.nsu.ccfit.izhitsky.Client.MyClient;
+import ru.nsu.ccfit.izhitsky.Client.TheMessageHandler;
 import ru.nsu.ccfit.izhitsky.Client.TheXMLMessageHandler;
 import ru.nsu.ccfit.izhitsky.User;
 
@@ -22,7 +22,7 @@ public class TheUserServerMessage implements ServerMessage, Serializable
 	}
 
 	@Override
-	public void process(MessageHandler theHandler)
+	public void process(TheMessageHandler theHandler)
 	{
 		theHandler.process(this);
 	}

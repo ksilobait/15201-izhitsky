@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import ru.nsu.ccfit.izhitsky.Messages.*;
 import ru.nsu.ccfit.izhitsky.User;
 
-public class TheMessageHandler implements MessageHandler
+public class TheMessageHandler
 {
 	private static final Logger theLogger = LogManager.getLogger(TheMessageHandler.class);
 
@@ -16,7 +16,6 @@ public class TheMessageHandler implements MessageHandler
 		this.theClient = theClient_;
 	}
 
-	@Override
 	public void process(TheTextServerMessage theMessage)
 	{
 		switch (theMessage.getType())
@@ -38,7 +37,6 @@ public class TheMessageHandler implements MessageHandler
 		}
 	}
 
-	@Override
 	public void process(TheUserServerMessage theMessage)
 	{
 		if (theClient.isLoggedIn())
@@ -63,7 +61,6 @@ public class TheMessageHandler implements MessageHandler
 		}
 	}
 
-	@Override
 	public void process(TheActionServerMessage theMessage)
 	{
 		switch (theMessage.getRequestType())

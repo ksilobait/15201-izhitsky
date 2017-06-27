@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.izhitsky.Messages;
 
-import ru.nsu.ccfit.izhitsky.Client.MessageHandler;
+import ru.nsu.ccfit.izhitsky.Client.TheMessageHandler;
 import ru.nsu.ccfit.izhitsky.Client.TheXMLMessageHandler;
 
 import java.io.Serializable;
@@ -44,7 +44,7 @@ public class TheTextServerMessage implements ServerMessage, Serializable
 	}
 
 	@Override
-	public void process(MessageHandler handler)
+	public void process(TheMessageHandler handler)
 	{
 		handler.process(this);
 	}

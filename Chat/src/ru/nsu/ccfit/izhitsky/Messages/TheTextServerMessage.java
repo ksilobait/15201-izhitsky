@@ -1,8 +1,11 @@
 package ru.nsu.ccfit.izhitsky.Messages;
 
 import ru.nsu.ccfit.izhitsky.Client.MessageHandler;
+import ru.nsu.ccfit.izhitsky.Client.TheXMLMessageHandler;
 
-public class TheTextServerMessage implements ServerMessage
+import java.io.Serializable;
+
+public class TheTextServerMessage implements ServerMessage, Serializable
 {
 	public enum STATUS {SUCCESS, ERROR}
 
@@ -20,6 +23,11 @@ public class TheTextServerMessage implements ServerMessage
 		this.errorMessage = errorMessage;
 	}
 
+	public String getErrorMessage()
+	{
+		return errorMessage;
+	}
+
 	public String getData()
 	{
 		return data;
@@ -30,10 +38,20 @@ public class TheTextServerMessage implements ServerMessage
 		this.data = data;
 	}
 
+	public STATUS getType()
+	{
+		return status;
+	}
+
 	@Override
 	public void process(MessageHandler handler)
 	{
-		handler.process(this, status);
+		handler.process(this);
 	}
+
+	@Override
+	public void documentize(TheXMLMessageHandler handler) {
+		System.out.println("TheTextServerMessage::documentize");
+		handler.documentize(this); }
 
 }

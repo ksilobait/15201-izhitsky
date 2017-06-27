@@ -1,10 +1,9 @@
 package ru.nsu.ccfit.izhitsky.Server;
 
-import ru.nsu.ccfit.izhitsky.Messages.ServerMessage;
-import ru.nsu.ccfit.izhitsky.Messages.TheClientMessage;
-import ru.nsu.ccfit.izhitsky.Messages.TheTextServerMessage;
-import ru.nsu.ccfit.izhitsky.Messages.TheUserServerMessage;
-import ru.nsu.ccfit.izhitsky.Server.ServerHandlers.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ru.nsu.ccfit.izhitsky.Messages.*;
+import ru.nsu.ccfit.izhitsky.Server.ServerUsers.*;
 import ru.nsu.ccfit.izhitsky.User;
 
 import java.io.BufferedReader;
@@ -12,11 +11,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class MyServer
 {
+	private static final Logger theLogger = LogManager.getLogger(MyServer.class);
+
 	private Thread osListenerThread;
 	private Thread xmlListenerThread;
 	private Thread speaker;
@@ -25,7 +28,7 @@ public class MyServer
 	private final Object arrayLock = new Object();
 
 	private List<User> userArray;
-	private List<ServerHandler> connectionArray;
+	private List<ServerUser> connectionArray;
 	private BlockingQueue<ServerMessage> serverMessages;
 	private BlockingQueue<ServerMessage> messageQueue;
 
@@ -33,10 +36,11 @@ public class MyServer
 	{
 		MyServer theServer = new MyServer();
 		theServer.launch();
-
 		try
 		{
 			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+			System.out.println("server launched; type 'exit' here to exit");
 			while (!in.readLine().equals("exit"))
 			{
 				//continue
@@ -44,7 +48,7 @@ public class MyServer
 		}
 		catch (IOException e)
 		{
-			System.out.println(e.getMessage());
+			theLogger.error(e.getMessage());
 		}
 
 		theServer.terminate();
@@ -54,6 +58,14 @@ public class MyServer
 	{
 		int osPort = 10671;
 		int xmlPort = 10672;
+		System.out.println("objects are on port #" + osPort);
+		System.out.println("XML is on port #" + xmlPort);
+
+		userArray = new ArrayList<>();
+		connectionArray = new ArrayList<>();
+		serverMessages = new ArrayBlockingQueue<>(10000);
+		messageQueue = new ArrayBlockingQueue<>(10);
+
 		try
 		{
 			osSocket = new ServerSocket(osPort);
@@ -61,20 +73,20 @@ public class MyServer
 		}
 		catch (IOException e)
 		{
-			System.out.println(e.getMessage());
+			theLogger.error(e.getMessage());
 			System.exit(-1);
 		}
 	}
 
 	private void launch()
 	{
-		osListenerThread = new Thread(new OSRunnable(), "OS thread");
+		osListenerThread = new Thread(new ObjectReader(), "OS thread");
 		osListenerThread.start();
 
-		xmlListenerThread = new Thread(new XMLRunnable(), "XML thread");
+		xmlListenerThread = new Thread(new XMLReader(), "XML thread");
 		xmlListenerThread.start();
 
-		speaker = new Thread(new SpeakerRunnable(), "Speaker thread");
+		speaker = new Thread(new Writer(), "Speaker thread");
 		speaker.start();
 	}
 
@@ -87,54 +99,154 @@ public class MyServer
 			speaker.interrupt();
 			synchronized (arrayLock)
 			{
-				for (ServerHandler hdnlr : connectionArray)
+				for (ServerUser hdnlr : connectionArray)
 				{
 					hdnlr.interruptWriter();
 					hdnlr.closeSocket();
 				}
 			}
-
+			osListenerThread.join();
+			xmlListenerThread.join();
+			speaker.join();
 		}
 		catch (IOException e)
 		{
-			System.out.println(e.getMessage());
+			theLogger.error(e.getMessage());
+		}
+		catch (InterruptedException e)
+		{
+			theLogger.error(e.getMessage());
 		}
 	}
 
-	public void disconnectTheClient(ServerHandler theHandler)
+	public void disconnectTheClient(ServerUser theHandler)
 	{
 		theHandler.interruptWriter();
 		userArray.remove(theHandler.getUser());
 		synchronized (arrayLock)
 		{
-			connectionArray.remove(theHandler);
+			disableConnection(theHandler);
 		}
 		TheUserServerMessage mssg = new TheUserServerMessage(TheUserServerMessage.STATUS.LOGOUT);
-		mssg.setName(theHandler.getName());
+		mssg.setUserName(theHandler.getUserName());
 		serverMessages.add(mssg);
 	}
 
+	public void disableConnection(ServerUser cnnctn)
+	{
+		synchronized (arrayLock)
+		{
+			connectionArray.remove(cnnctn);
+		}
+	}
 
-	public void process(TheClientMessage theMessage, ServerHandler theHandler)
+
+	public void process(TheClientMessage theMessage, ServerUser theHandler)
 	{
 		if (theMessage.getSessionID() == theHandler.getSessionID())
 		{
-			theHandler.sendMessage(new TheTextServerMessage(TheTextServerMessage.STATUS.SUCCESS));
-			System.out.println("successful text response sent to {}" + theHandler.getUserName());
+			TheTextServerMessage mssgtsnd = new TheTextServerMessage(TheTextServerMessage.STATUS.SUCCESS);
+			mssgtsnd.setData(theMessage.getData());
+			theHandler.sendMessage(mssgtsnd);
+			theLogger.info("text response was sent to " + theHandler.getUserName());
 
-			TheUserServerMessage messageToSend = new TheUserServerMessage();
-			messageToSend.setName(theHandler.getUserName());
+			TheUserServerMessage messageToSend = new TheUserServerMessage(TheUserServerMessage.STATUS.DEFAULT);
+			messageToSend.setUserName(theHandler.getUserName());
 			messageToSend.setData(theMessage.getData());
 			serverMessages.add(messageToSend);
 
-			System.out.println("text message was sent to everybody");
+			theLogger.info("text message was sent to everybody");
 		}
 		else
 		{
 			TheTextServerMessage mssg = new TheTextServerMessage(TheTextServerMessage.STATUS.ERROR);
 			mssg.setErrorMessage("session IDs are not equal");
 			theHandler.sendMessage(mssg);
-			System.out.println("session IDs are not equal");
+			theLogger.info("session IDs are not equal");
+		}
+	}
+
+	public void process(TheRequestClientMessage theMessage, ServerUser theHandler)
+	{
+		switch (theMessage.getRequestType())
+		{
+			case LOGIN:
+			{
+				User user = theMessage.getUser();
+				if (userArray.contains(user))
+				{
+					TheActionServerMessage response = new TheActionServerMessage(TheTextServerMessage.STATUS.ERROR, TheRequestClientMessage.REQUEST_TYPE.LOGIN);
+					response.setErrorMessage("user name is already in use");
+					theHandler.sendMessage(response);
+					theLogger.info("user name is already in use");
+				}
+				else
+				{
+					theHandler.setUser(user);
+					userArray.add(user);
+					TheActionServerMessage response = new TheActionServerMessage(TheTextServerMessage.STATUS.SUCCESS, TheRequestClientMessage.REQUEST_TYPE.LOGIN);
+					response.setSessionID(theHandler.getSessionID());
+					theHandler.sendMessage(response);
+
+					for (Object mssg : messageQueue.toArray())
+					{
+						theHandler.sendMessage((ServerMessage) mssg);
+					}
+					theLogger.info("added new user: " + user.getName() + " with sessionID#" + theHandler.getSessionID());
+
+					TheUserServerMessage mssg = new TheUserServerMessage(TheUserServerMessage.STATUS.LOGIN);
+					mssg.setUserName(user.getName());
+					mssg.setClientType(user.getType());
+					serverMessages.add(mssg);
+				}
+				break;
+			}
+			case LOGOUT:
+			{
+				if (theMessage.getSessionID() != theHandler.getSessionID())
+				{
+					TheActionServerMessage mssg = new TheActionServerMessage(TheTextServerMessage.STATUS.ERROR, TheRequestClientMessage.REQUEST_TYPE.LOGOUT);
+					mssg.setErrorMessage("session IDs are not equal");
+					theHandler.sendMessage(mssg);
+					theLogger.info("in logout request session IDs are not equal");
+				}
+				else
+				{
+					theHandler.sendMessage(new TheActionServerMessage(TheTextServerMessage.STATUS.SUCCESS, TheRequestClientMessage.REQUEST_TYPE.LOGOUT));
+					theLogger.info("successful logout response sent to user " + theHandler.getUserName());
+					userArray.remove(theHandler.getUser());
+
+					TheUserServerMessage mssg = new TheUserServerMessage(TheUserServerMessage.STATUS.LOGOUT);
+					mssg.setUserName(theHandler.getUserName());
+					serverMessages.add(mssg);
+
+					theHandler.interruptWriter();
+					synchronized (arrayLock)
+					{
+						disableConnection(theHandler);
+					}
+					theLogger.info("sent user logout message to everyone");
+				}
+				break;
+			}
+			case LIST:
+			{
+				if (theMessage.getSessionID() != theHandler.getSessionID())
+				{
+					TheActionServerMessage mssg = new TheActionServerMessage(TheTextServerMessage.STATUS.ERROR, TheRequestClientMessage.REQUEST_TYPE.LIST);
+					mssg.setErrorMessage("session IDs are not equal");
+					theHandler.sendMessage(mssg);
+					theLogger.info("in list users request session IDs are not equal");
+				}
+				else
+				{
+					TheActionServerMessage mssg = new TheActionServerMessage(TheTextServerMessage.STATUS.SUCCESS, TheRequestClientMessage.REQUEST_TYPE.LIST);
+					mssg.setUsers(userArray);
+					theHandler.sendMessage(mssg);
+					theLogger.info("sent list users " + userArray + " to " + theHandler.getUserName());
+				}
+				break;
+			}
 		}
 	}
 
@@ -145,9 +257,14 @@ public class MyServer
 		return userArray;
 	}
 
+	public BlockingQueue<ServerMessage> getServerMessages()
+	{
+		return serverMessages;
+	}
+
 	//CLASSES------------------------------------------------------------------------------
 
-	private class OSRunnable implements Runnable
+	private class ObjectReader implements Runnable
 	{
 		@Override
 		public void run()
@@ -157,24 +274,24 @@ public class MyServer
 				while (true)
 				{
 					Socket theSocket = osSocket.accept();
-					OSHandler theHandler = new OSHandler(theSocket);
+					OSUser theUser = new OSUser(MyServer.this ,theSocket);
 
 					synchronized (arrayLock)
 					{
-						connectionArray.add(theHandler);
+						connectionArray.add(theUser);
 					}
 
-					theHandler.launch();
+					theUser.launch();
 				}
 			}
 			catch (IOException e)
 			{
-				System.out.println(e.getMessage());
+				theLogger.error(e.getMessage());
 			}
 		}
 	}
 
-	private class XMLRunnable implements Runnable
+	private class XMLReader implements Runnable
 	{
 		@Override
 		public void run()
@@ -184,7 +301,7 @@ public class MyServer
 				while (true)
 				{
 					Socket theSocket = xmlSocket.accept();
-					XMLHandler theHandler = new XMLHandler(theSocket);
+					XMLUser theHandler = new XMLUser(MyServer.this ,theSocket);
 
 					synchronized (arrayLock)
 					{
@@ -196,12 +313,12 @@ public class MyServer
 			}
 			catch (IOException e)
 			{
-				System.out.println(e.getMessage());
+				theLogger.error(e.getMessage());
 			}
 		}
 	}
 
-	private class SpeakerRunnable implements Runnable
+	private class Writer implements Runnable
 	{
 		@Override
 		public void run()
@@ -219,13 +336,13 @@ public class MyServer
 						}
 						synchronized (arrayLock)
 						{
-							String s1 = ((TheUserServerMessage) mssg).getName();
-							for (ServerHandler hdnlr : connectionArray)
+							for (ServerUser hndlr : connectionArray)
 							{
-								String s2 = hdnlr.getUserName();
-								if (!s1.equals(s2)) //send to everyone but me
+								String s1 = ((TheUserServerMessage) mssg).getUserName();
+								String s2 = hndlr.getUserName();
+								if (s1 != null && s2 != null && !s1.equals(s2)) //send to everyone but me
 								{
-									hdnlr.sendMessage(mssg);
+									hndlr.sendMessage(mssg);
 								}
 							}
 						}
@@ -234,7 +351,7 @@ public class MyServer
 					{
 						synchronized (arrayLock)
 						{
-							for (ServerHandler hdnlr : connectionArray)
+							for (ServerUser hdnlr : connectionArray)
 							{
 								hdnlr.sendMessage(mssg);
 							}
@@ -244,44 +361,8 @@ public class MyServer
 			}
 			catch (InterruptedException e)
 			{
-				System.out.println(e.getMessage());
+				theLogger.error(e.getMessage());
 			}
 		}
 	}
-
-	/*
-	{
-		ServerSocket server = new ServerSocket(OSport);
-		System.out.println("Server started waiting for clients...");
-
-		while (true)
-		{
-			Socket SOCK = server.accept();
-			connectionArray.add(SOCK);
-
-			System.out.println("Client connection from: " + SOCK.getLocalAddress().getHostAddress());
-
-			AddUserName(SOCK);
-
-			RunnableChatServer CHAT = new RunnableChatServer(SOCK);
-			Thread X = new Thread(CHAT);
-			X.start();
-		}
-
-	}
-
-	public static void AddUserName(Socket X) throws IOException
-	{
-		Scanner in = new Scanner(X.getInputStream());
-		String userName = in.nextLine();
-		currentUsers.add(userName);
-
-		for (int i = 0; i < Server.connectionArray.size(); i++)
-		{
-			Socket tempSocket = Server.connectionArray.get(i);
-			PrintWriter out = new PrintWriter(tempSocket.getOutputStream());
-			out.println("#?!" + currentUsers); //command "add users"
-			out.flush();
-		}
-	}*/
 }

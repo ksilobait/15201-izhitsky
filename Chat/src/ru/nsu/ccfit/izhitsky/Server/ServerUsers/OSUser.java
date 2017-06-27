@@ -53,7 +53,7 @@ public class OSUser extends ServerUser
 				}
 				catch (IOException e)
 				{
-					theLogger.error("socket was closed");
+					theLogger.info("socket was closed");
 					theServer.disconnectTheClient(OSUser.this);
 				}
 			}
@@ -76,11 +76,11 @@ public class OSUser extends ServerUser
 				}
 				catch (IOException e)
 				{
-					theLogger.error("socket was closed");
+					theLogger.info("socket was closed");
 				}
 				catch (InterruptedException e)
 				{
-					theLogger.error("socket was interrupted");
+					theLogger.info("socket was interrupted");
 				}
 			}
 		});

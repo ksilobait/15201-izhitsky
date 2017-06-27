@@ -59,12 +59,6 @@ public class MyClient
 
 	public static void main(String[] args)
 	{
-		boolean isLogSale = true;
-
-		if (!isLogSale)
-		{
-			Configurator.setRootLevel(Level.OFF);
-		}
 		new GUIIntro();
 	}
 

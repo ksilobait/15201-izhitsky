@@ -13,11 +13,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class MyServer
 {
+	static
+	{
+		Properties props = System.getProperties();
+		props.setProperty("log4j.configurationFile", "file:src/log4j2.xml");
+	}
+
 	private static final Logger theLogger = LogManager.getLogger(MyServer.class);
 
 	private Thread osListenerThread;
@@ -111,11 +118,11 @@ public class MyServer
 		}
 		catch (IOException e)
 		{
-			theLogger.error(e.getMessage());
+			theLogger.info(e.getMessage());
 		}
 		catch (InterruptedException e)
 		{
-			theLogger.error(e.getMessage());
+			theLogger.info(e.getMessage());
 		}
 	}
 
@@ -286,7 +293,7 @@ public class MyServer
 			}
 			catch (IOException e)
 			{
-				theLogger.error(e.getMessage());
+				theLogger.info(e.getMessage());
 			}
 		}
 	}
@@ -313,7 +320,7 @@ public class MyServer
 			}
 			catch (IOException e)
 			{
-				theLogger.error(e.getMessage());
+				theLogger.info(e.getMessage());
 			}
 		}
 	}
@@ -361,7 +368,7 @@ public class MyServer
 			}
 			catch (InterruptedException e)
 			{
-				theLogger.error(e.getMessage());
+				theLogger.info(e.getMessage());
 			}
 		}
 	}
